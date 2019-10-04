@@ -3,13 +3,12 @@
 .bm-burger-button {
   position: relative;
   width: 50px;
-  height: 32px;
-
+  height: 32px; 
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #fff;
+  background: black;
   height: 1px !important;
   width: 32px;
   transition: all .2s ease-in-out;
@@ -22,7 +21,7 @@
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(0,0,0, 0.8);
   &:nth-child(1) {
     top: 6% !important;
   }

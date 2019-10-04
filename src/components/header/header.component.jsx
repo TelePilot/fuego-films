@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import sanityClient from '../../Client'
 import HamburgerMenu from '../menu/menu.component'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,26 @@ function urlFor(source) {
   return builder.image(source)
 }
 
+const SiteColor = css`
+  span {
+    background: black;
+  }
+`
+const MainColor = css`
+  span {
+    background: white
+  }
+ `
+
+
+// const getMenuStyles = () => {
+  // console.log(window.location.pathname)
+  // if (window.location.pathname === '/home') {
+      // return MainColor
+  // } 
+// 
+  // return SiteColor
+// }
 const HeaderContainer = styled.div`
   width: 100%;
   z-index: 10;
@@ -21,7 +41,9 @@ const HeaderContainer = styled.div`
   justify-items: center;
   align-items: center;
 
-  grid-template-columns: 1fr 8fr 1fr;`
+  grid-template-columns: 1fr 8fr 1fr;
+
+  `
 
 const LogoContainer = styled.div`
   width: 100%;
@@ -39,7 +61,8 @@ const LogoImg = styled.img`
   max-width: 70%;
   height: auto;`
 
-const Header = () => {
+const Header = ({...props }) => {
+  console.log(window.location.pathname)
   const [header, setHeader] = useState({ 
     menu: [],
     logo: '',
@@ -55,9 +78,10 @@ const Header = () => {
       })
     })
   }, [])
+
   return (
 
-    <HeaderContainer >
+    <HeaderContainer {...props}>
        <HamburgerMenu menu={header.menu}/>
       <div></div>
       <LogoContainer>

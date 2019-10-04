@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import {Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import './App.css'
 import Header from './components/header/header.component'
 import Spinner from './components/spinner/spinner.component'

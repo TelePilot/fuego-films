@@ -15,7 +15,10 @@ const VideoItemContainer = styled.div`
   text-align: center;
   width: 100%;
   height: auto;
-  position: relative;`
+  position: relative;
+  h1 {
+    mix-blend-mode: difference;
+  }`
 
 const VideoLink = styled(Link)`
   height: 100%;
@@ -59,8 +62,10 @@ const VideoItemOverlay = styled.div`
     background: rgba(0,0,0,0.3)
 `
 const VideoTitle = styled.h1`
+
 `
-const ClientText = styled.p``
+const ClientText = styled.p`
+`
 
 const VideoImgBackground = styled.div`
     height: 100vh;

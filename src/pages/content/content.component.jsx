@@ -30,6 +30,7 @@ const Content = () => {
      clientWork, title, thumbnail, client[]->{clientName}}
     `
     sanityClient.fetch(videoQuery).then(video => {
+      console.log(video)
       const videoArray = []
       video.forEach(video => {
          
