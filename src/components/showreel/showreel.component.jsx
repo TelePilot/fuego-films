@@ -4,14 +4,17 @@ import styled from 'styled-components'
 const ShowreelContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto;
   top: 0;
   left: 0;
   overflow: scroll;
 
   iframe {
     width: 100%;
-    height: 100%;
+    height: 50vh;
+    @media screen and (max-width: 1000px) {
+      height: 25vh
+    }
   }
 `
 

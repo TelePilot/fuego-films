@@ -8,24 +8,26 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: black;
+  background: rgba(0,0,0, 0.8);
   height: 1px !important;
   width: 32px;
   transition: all .2s ease-in-out;
 
   &:nth-child(2) {
     width: 50px;
+    background: rgba(0,0,0, 0.5);
   }
   
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: rgba(0,0,0, 0.8);
+  background: rgba(0,0,0, 0.6);
   &:nth-child(1) {
     top: 6% !important;
   }
   &:nth-child(2) {
+    background: black;
     left: 10% !important;
   }
   &:nth-child(3) {

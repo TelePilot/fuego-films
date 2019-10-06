@@ -8,11 +8,14 @@ import ShowreelCont from '../../components/showreel-container/showreel-container
 const AboutWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;`
+  align-items: center;
+  height: auto;`
 
 const AboutHeader = styled.h1`
-  @media screen and (max-width: 981px) {
+margin: 80px 0 0 0;
+  @media screen and (max-width: 1000px) {
     font-size: 22px;
+   
 } 
 `
 
@@ -28,8 +31,7 @@ const AboutSection = styled.div`
 const AboutDescContainer = styled.div`
   text-align: left;
   width: 60%;
-  @media screen and (max-width: 981px) {
-    order: 1;
+  @media screen and (max-width: 1000px) {
     text-align: center;
     width: 100%;
 
@@ -42,7 +44,7 @@ const AboutDescContainer = styled.div`
   }`
 
 const AboutDesc = styled.p`
-  @media screen and (max-width: 981px) {
+  @media screen and (max-width: 1000px) {
     padding: 0 15%;
   }
 `  
@@ -60,7 +62,7 @@ const AboutTeamContainer = styled.div`
     margin-right: 5px;
   }
 
-  @media screen and (max-width: 981px) {
+  @media screen and (max-width: 1000px) {
     padding: 0 15%;
   }
   
@@ -68,7 +70,11 @@ const AboutTeamContainer = styled.div`
 
 const ShowreelContainer = styled.div`
   width: 1000px;
-  overflow: hidden;`  
+  overflow: hidden;
+  margin-top: 5%;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }`  
 
 
 const About = () => {
@@ -100,14 +106,14 @@ const About = () => {
                 <AboutDescContainer>
                   <h2 style={{margin: '0'}}>{about.descHeader}</h2>
                   <AboutDesc>{about.desc} </AboutDesc>
-                  <AboutTeamContainer>
+                  {/* <AboutTeamContainer>
                   <p style={{fontWeight:'bold'}}>Team Members: </p>
                     {about.teamMembers.map((teamMember, id) => {
                         return( <p key={id}>{ `${teamMember.name}, `}</p>)
                       })}
-                  </AboutTeamContainer>
+                  </AboutTeamContainer> */}
                 </AboutDescContainer>
-                <ShowreelContainer>
+                <ShowreelContainer >
                  <ShowreelCont />
                 </ShowreelContainer>
                

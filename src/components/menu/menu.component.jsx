@@ -18,7 +18,7 @@ const MenuItem = styled(AnimatedMenuItem)`
 const HamburgerMenu = ({ menu }) => {
   const items = menu
 
-  const [trail, set, stop] = useTrail(items.length, () => ({
+  const [trail, set] = useTrail(items.length, () => ({
 
     opacity:0,
     transform: 'translate3D(0,25px,0)',

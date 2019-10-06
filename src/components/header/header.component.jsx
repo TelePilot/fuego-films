@@ -37,24 +37,26 @@ const HeaderContainer = styled.div`
   left: 0;
   position: absolute;
   height: 80px;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-
-  grid-template-columns: 1fr 8fr 1fr;
-
+  padding: 0 1% 0 2%;
+  box-sizing: border-box
+  @media screen and (max-width: 1000px) {
+    padding: 0 2% 0 5%
+  }
   `
 
 const LogoContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;`
 
 const LogoLink = styled(Link)`
   width: 100%;
-  height: 100%;`
+  height: auto;`
 
 const LogoImg = styled.img`
   min-width: 100px;
@@ -82,7 +84,6 @@ const Header = ({...props }) => {
 
     <HeaderContainer {...props}>
        <HamburgerMenu menu={header.menu}/>
-      <div></div>
       <LogoContainer>
           <LogoLink to='/'><LogoImg alt="Logo" src={urlFor(header.logo).width(500).url()}/></LogoLink>
       </LogoContainer>
