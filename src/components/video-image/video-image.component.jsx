@@ -14,7 +14,7 @@ function urlFor(source) {
 const VideoItemContainer = styled.div`
   text-align: center;
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   h1 {
     mix-blend-mode: difference;
@@ -26,10 +26,7 @@ const VideoLink = styled(Link)`
   color: white;
   text-decoration: none;
 `   
-const VideoImg = styled.img`
-  width: 100%;
-  min-width: 100%;
-  height: auto;`
+
 
 const VideoTextContainer = styled.div`
     width: 100%;
@@ -50,7 +47,7 @@ const VideoTextContainer = styled.div`
 
 const VideoImgContainer = styled.div`
     position: relative;
-    height: auto;
+    height: 100%;
     width: 100%;
     cursor: pointer;
   `
@@ -77,14 +74,10 @@ const VideoImgBackground = styled.div`
 const VideoImage = ({ video, home }) => {
   return (
     <VideoLink to={`/content/${video.title}`}>
-            <VideoItemContainer >
+            <VideoItemContainer  >
                 <VideoItemOverlay />
-              <VideoImgContainer>
-                {home ? 
-                <VideoImgBackground style={{ backgroundImage:`url(${urlFor(video.thumbnail).url()})`}}/>
-                  :
-                <VideoImg alt="video img" src={urlFor(video.thumbnail).url()}/>}
-                
+              <VideoImgContainer>             
+                <VideoImgBackground  style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}}/>      
                   <VideoTextContainer>
                     <VideoTitle>{video.title}</VideoTitle>
                     {video.client.map((client, id) => {

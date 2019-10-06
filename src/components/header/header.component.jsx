@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import sanityClient from '../../Client'
 import HamburgerMenu from '../menu/menu.component'
 import { Link } from 'react-router-dom'
@@ -10,25 +10,25 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-const SiteColor = css`
-  span {
-    background: black;
-  }
-`
-const MainColor = css`
-  span {
-    background: white
-  }
- `
+// const SiteColor = css`
+//   span {
+//     background: black;
+//   }
+// `
+// const MainColor = css`
+//   span {
+//     background: white
+//   }
+//  `
 
 
 // const getMenuStyles = () => {
-  // console.log(window.location.pathname)
-  // if (window.location.pathname === '/home') {
-      // return MainColor
-  // } 
-// 
-  // return SiteColor
+//   console.log(window.location.pathname)
+//   if (window.location.pathname === '/home') {
+//       return MainColor
+//   } 
+
+//   return SiteColor
 // }
 const HeaderContainer = styled.div`
   width: 100%;
@@ -62,7 +62,6 @@ const LogoImg = styled.img`
   height: auto;`
 
 const Header = ({...props }) => {
-  console.log(window.location.pathname)
   const [header, setHeader] = useState({ 
     menu: [],
     logo: '',

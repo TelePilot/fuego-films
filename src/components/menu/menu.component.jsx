@@ -19,29 +19,32 @@ const HamburgerMenu = ({ menu }) => {
   const items = menu
 
   const [trail, set, stop] = useTrail(items.length, () => ({
+
     opacity:0,
-    transform: 'translate3D(0,50px,0)'
-  
+    transform: 'translate3D(0,25px,0)',
+
   }))
     
     const [menuOpen, menuOpenSwitch] = useState(false)
 
     const toggleMenu = (state) => {
       if (state.isOpen) {
+       
         menuOpenSwitch(true)
         set({
+        
           opacity: 1,
           transform: 'translate3D(0,0,0',
-          
         })
       }
       
       else {menuOpenSwitch(false)
         set({
+        
           opacity: 0,
-          transform: 'translate3D(0,50px,0',
+          transform: 'translate3D(0,25px,0',
         })
-        stop()}
+       }
     }
   
     return (
