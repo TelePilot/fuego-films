@@ -101,11 +101,7 @@ render() {
              <VideoDescContainer>
                <VideoTitle>About</VideoTitle>
                  <VideoDesc>{video.description}</VideoDesc>
-                 <Team>
-                   <p style={{fontWeight: 'bold'}}>Team Members:</p>
-                   {video.teamMembers.map((teamMember, id) => {
-                       return( <p key={id}> {teamMember.name} </p>)
-                     })}</Team>
+                
 
              </VideoDescContainer>
         { video.clientWork ? <div>
