@@ -101,6 +101,7 @@ render() {
              <VideoDescContainer>
                {video.description ?  <div>
                 <VideoTitle>About</VideoTitle>
+                
                  <VideoDesc>{video.description}</VideoDesc>
                </div> : null}
               
