@@ -11,7 +11,7 @@ const MenuItem = styled(AnimatedMenuItem)`
   cursor: pointer;
   color: black;
   margin: 10px 0;
-  font-size: 26px;
+  font-size: 32px;
   text-decoration: none;
  
 `
