@@ -9,11 +9,9 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  h1 {
-    margin-top: 80px;
-  }
   `
-
+const ContentTitle = styled.h1`
+margin-top: 80px;`
 const VideoContainer = styled.div`
   display: grid;
   grid-template-columns:1fr 1fr 1fr;
@@ -68,7 +66,7 @@ const Content = () => {
 
     return (
       <ContentContainer>
-        <h1>Content</h1>
+        <ContentTitle>Content</ContentTitle>
         <VideoContainer>
         {
               videoArray.map((contentVid, id) =>
