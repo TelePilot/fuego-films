@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import sanityClient from '../../Client'
 import imageUrlBuilder from '@sanity/image-url'
+import './video-image.styles.scss'
 
 const builder = imageUrlBuilder(sanityClient)
 function urlFor(source) {
@@ -16,15 +17,17 @@ const VideoItemContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  h1 {
-    mix-blend-mode: difference;
-  }`
+  transition: all .2s ease-in-out;
+  
+  `
 
 const VideoLink = styled(Link)`
   height: 100%;
   width: 100%;
   color: white;
   text-decoration: none;
+  position: relative;
+  
 `   
 
 
@@ -56,7 +59,7 @@ const VideoItemOverlay = styled.div`
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3)
+    background: rgba(0,0,0,0.3);
 `
 const VideoTitle = styled.h1`
 
@@ -71,13 +74,17 @@ const VideoImgBackground = styled.div`
     background-repeat: no-repeat;
     background-position: center;`
 
+
+
 const VideoImage = ({ video, home }) => {
   return (
     <VideoLink to={`/content/${video.title}`}>
-            <VideoItemContainer  >
-                <VideoItemOverlay />
+          
+            <VideoItemContainer  className={!home ? 'hover' : null} >
+          
+              <VideoItemOverlay />
               <VideoImgContainer>             
-                <VideoImgBackground  style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}}/>      
+                <VideoImgBackground style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}}/>      
                   <VideoTextContainer>
                     <VideoTitle>{video.title}</VideoTitle>
                     {video.client.map((client, id) => {

@@ -1,0 +1,8 @@
+.hover{
+       &:hover
+       { transform: translate3D(-10px,-10px,0);
+        -webkit-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+        box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+      }
+}

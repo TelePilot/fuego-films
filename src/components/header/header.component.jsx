@@ -56,8 +56,7 @@ const HeaderComp = (props) => {
 
   useEffect(function() {
     setClassName(props.match.isExact ? "home" : "not-home")
-  }, [props.match.isExact, props.match.path])
-  console.log(props.match)
+  }, [props.match.isExact])
   useEffect(() => {
     const headerQuery = `*[_type == "header"]`
     sanityClient.fetch(headerQuery).then(header => {
