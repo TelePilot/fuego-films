@@ -86,10 +86,13 @@ const VideoImage = ({ video, home }) => {
               <VideoImgContainer>             
                 <VideoImgBackground style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}}/>      
                   <VideoTextContainer>
-                    <VideoTitle>{video.title}</VideoTitle>
-                    {video.client.map((client, id) => {
-                           return( <ClientText key={id}> {client.clientName} </ClientText>)
-                          })}
+                  
+
+    {video.clientWork ? null : <VideoTitle>{video.title}</VideoTitle>}
+                        
+                        {video.client ? video.client.map((client, id) => {
+                              return( !video.clientWork ? <ClientText key={id}> {client.clientName} </ClientText> : <VideoTitle key={id}> {client.clientName}</VideoTitle>)
+                              }): null}
                   </VideoTextContainer>
              
               </VideoImgContainer>

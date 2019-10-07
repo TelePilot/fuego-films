@@ -99,8 +99,11 @@ render() {
                  <iframe title={video.title} frameBorder="0" allow="autoplay fullscreen" src={`https://player.vimeo.com/video/${video.vimeoLink}`}></iframe>
              </VideoContainer>
              <VideoDescContainer>
-               <VideoTitle>About</VideoTitle>
+               {video.description ?  <div>
+                <VideoTitle>About</VideoTitle>
                  <VideoDesc>{video.description}</VideoDesc>
+               </div> : null}
+              
                 
 
              </VideoDescContainer>

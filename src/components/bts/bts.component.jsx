@@ -31,10 +31,11 @@ const BTSImg = styled.img`
 
 const BTS = ( {video} ) => (
     <BTSWrapper>
-               <h2>
+               
+           {video.bts !== undefined ? <BTSContainer>
+            <h2>
                  Behind the Scenes
                </h2>
-           {video.bts.length > 0 ? <BTSContainer>
             {video.bts.map((bts, id) => {
               return (
                <BTSImgContainer key={id}><BTSImg alt="BTS" src={urlFor(bts).url()} /></BTSImgContainer> 

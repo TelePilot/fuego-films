@@ -40,16 +40,23 @@ const Content = () => {
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
+      
       video.forEach(video => {
-         
+          
           if(videoArray.length <= 0) {
+            
             videoArray.push(video)
           }
          else if (video.clientWork) {
-          
-           if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
-            
-           } else {
+           if(
+            videoArray.filter(e => e.client !== undefined)
+           ) {
+            if(videoArray.filter(e => (e.client > 0 ? e.client[0].clientName : ['hey']) === (video.client.length > 0 ? video.client[0].clientName : ['hey']) ).length > 0) {
+           
+            }
+           }
+           
+           else {
             videoArray.push(video)
            }
            
