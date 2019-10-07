@@ -51,7 +51,7 @@ const HamburgerMenu = ({ menu }) => {
       <Menu isOpen={menuOpen} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } width={ '200px' } onStateChange={toggleMenu} disableAutoFocus left>
 
         {trail.map((props, index) => (
-           <MenuItem key={items[index]} style={props} onClick={() => menuOpenSwitch(false)} to={`/${items[index].name}`}>{items[index].name}</MenuItem>
+           <MenuItem key={items[index]} style={props} onClick={() => menuOpenSwitch(false)} to={items[index].name === 'home' ? '/' : `/${items[index].name}`}>{items[index].name}</MenuItem>
           )
         )}
       </Menu>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 import './App.css'
 import Header from './components/header/header.component'
 import Spinner from './components/spinner/spinner.component'
@@ -13,12 +13,14 @@ const ContentPage = lazy(() => import('./pages/content/content.component'))
 const App = () => {
 
       return (
+       
           <div id="outer-container" className="App">
             <Header />
             <div id="page-wrap">
             <Switch >
-              <ErrorBoundary>
+            <ErrorBoundary>
                 <Suspense fallback={<Spinner/>}>
+                
                   <Route
                     path={'/'}
                     component={HomePage}
@@ -39,11 +41,12 @@ const App = () => {
                     path={'/home'}
                     component={HomePage}/>
                 </Suspense>  
-              </ErrorBoundary>
+                </ErrorBoundary>
             </Switch>
             </div>
             
           </div>
+         
        )
 }
 

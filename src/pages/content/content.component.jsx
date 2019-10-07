@@ -9,6 +9,9 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  h1 {
+    margin-top: 80px;
+  }
   `
 
 const VideoContainer = styled.div`
@@ -38,7 +41,6 @@ const Content = () => {
      clientWork, title, thumbnail, client[]->{clientName}}
     `
     sanityClient.fetch(videoQuery).then(video => {
-      console.log(video)
       const videoArray = []
       video.forEach(video => {
          

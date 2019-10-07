@@ -49,24 +49,24 @@ const AboutDesc = styled.p`
   }
 `  
 
-const AboutTeamContainer = styled.div`
-  margin-top: 10%;
-  width: 100%;
-  display: flex;
-  justify-content:flex-start;
-  flex-flow: row wrap;
+// const AboutTeamContainer = styled.div`
+//   margin-top: 10%;
+//   width: 100%;
+//   display: flex;
+//   justify-content:flex-start;
+//   flex-flow: row wrap;
 
-  * {
-    padding: 0;
-    margin: 2px 0;
-    margin-right: 5px;
-  }
+//   * {
+//     padding: 0;
+//     margin: 2px 0;
+//     margin-right: 5px;
+//   }
 
-  @media screen and (max-width: 1000px) {
-    padding: 0 15%;
-  }
+//   @media screen and (max-width: 1000px) {
+//     padding: 0 15%;
+//   }
   
-  `
+  // `
 
 const ShowreelContainer = styled.div`
   width: 1000px;

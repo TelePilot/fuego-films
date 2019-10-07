@@ -17,11 +17,13 @@ export const ErrorImageContainer = styled.div`
   background-position: center;
   width: 40vh;
   height: 40vh;
+  margin-top: 50px;
 `
 
 export const ErrorImageText = styled.h2`
   font-size: 28px;
   color: #2f8e89;
+  width: 80%;
 `
 
 class ErrorBoundary extends React.Component {
@@ -39,7 +41,7 @@ class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch(error, info) {
-        console.log(error)
+        console.log(error, info)
     }
 
     render() {
@@ -47,11 +49,14 @@ class ErrorBoundary extends React.Component {
             return (
                 <ErrorImageOverlay>
                     <ErrorImageContainer imageUrl="https://i.imgur.com/A040Lxr.png" />
-                    <ErrorImageText>Houston, the page got lost in space... Something went wrong, try reloading the page or go to another page. :(</ErrorImageText>
+                    <ErrorImageText>Houston, the page got lost in space... Something went wrong, try reloading the page or go to another page and refresh. :(</ErrorImageText>
                 </ErrorImageOverlay>
                 )
         }
-        return this.props.children
+        else {
+            return this.props.children
+        }
+        
     }
 
 }

@@ -2,34 +2,15 @@ import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import sanityClient from '../../Client'
 import HamburgerMenu from '../menu/menu.component'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import imageUrlBuilder from '@sanity/image-url'
+import './header.styles.scss'
 
 const builder = imageUrlBuilder(sanityClient)
 function urlFor(source) {
   return builder.image(source)
 }
 
-// const SiteColor = css`
-//   span {
-//     background: black;
-//   }
-// `
-// const MainColor = css`
-//   span {
-//     background: white
-//   }
-//  `
-
-
-// const getMenuStyles = () => {
-//   console.log(window.location.pathname)
-//   if (window.location.pathname === '/home') {
-//       return MainColor
-//   } 
-
-//   return SiteColor
-// }
 const HeaderContainer = styled.div`
   width: 100%;
   z-index: 10;
@@ -63,13 +44,20 @@ const LogoImg = styled.img`
   max-width: 70%;
   height: auto;`
 
-const Header = ({...props }) => {
+const HeaderComp = (props) => {
+  
   const [header, setHeader] = useState({ 
     menu: [],
     logo: '',
     phone: '',
     email: ''
   })
+  const [className, setClassName] = useState("home")
+
+  useEffect(function() {
+    setClassName(props.match.isExact ? "home" : "not-home")
+  }, [props.match.isExact, props.match.path])
+  console.log(props.match)
   useEffect(() => {
     const headerQuery = `*[_type == "header"]`
     sanityClient.fetch(headerQuery).then(header => {
@@ -79,10 +67,9 @@ const Header = ({...props }) => {
       })
     })
   }, [])
-
   return (
 
-    <HeaderContainer {...props}>
+    <HeaderContainer className={className} {...props}>
        <HamburgerMenu menu={header.menu}/>
       <LogoContainer>
           <LogoLink to='/'><LogoImg alt="Logo" src={urlFor(header.logo).width(500).url()}/></LogoLink>
@@ -92,4 +79,5 @@ const Header = ({...props }) => {
 }
 
 
+const Header = withRouter(HeaderComp)
 export default Header
