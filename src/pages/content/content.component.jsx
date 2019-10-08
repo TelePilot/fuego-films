@@ -73,7 +73,7 @@ const Content = () => {
 
     return (
       <ContentContainer>
-        <ContentTitle>Content</ContentTitle>
+        <ContentTitle>Share The Vision</ContentTitle>
         <VideoContainer>
         {
               videoArray.map((contentVid, id) =>
