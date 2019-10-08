@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css"
 import './carousel.styles.scss'
 import sanityClient from '../../Client'
 import imageUrlBuilder from '@sanity/image-url'
-
+import { withRouter } from 'react-router-dom'
 
 const builder = imageUrlBuilder(sanityClient)
 function urlFor(source) {
@@ -23,7 +23,7 @@ const ClientSlideContainer = styled.div`
 `
 
 const ClientLink = styled(Link)`
-  width: 200px;
+  width: 240px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -39,8 +39,8 @@ const LinkTitle = styled.p`
 `
 
 const ClientLinkImg = styled.img`
-  max-width:150px;
-  width: 150px;
+  max-width:200px;
+  width: 200px;
   height: auto;
   color: black;
   transition: all ease-in-out .4s;
@@ -67,40 +67,25 @@ componentDidMount() {
     sanityClient.fetch(videoQuery).then(video => {
       
       video.forEach(video => {
-      
-        console.log(video)
-          this.state.clientResult.push(video)
+          
+            this.state.clientResult.push(video)
+        
+          
           this.setState({
             videoLoading: false
           })
       })
-      const pos = this.state.videoArray.filter(video => video.title === this.state.match)
-  
-      if(pos.length > 0) {
-  
-        const videoResult = this.state.videoArray.filter(video => video.title === this.state.match)
-        const client = videoResult[0].client[0].clientName
-        const clientArray = this.state.videoArray.filter(video => video.client[0].clientName === client)
-      
-  
-        this.setState({
-          clientName: client,
-          clientResult: clientArray,
-          video: videoResult,
-          videoLoading: false
       })
-  }})
-  
+  console.log(this.state.clientResult)
   }
   render() {
     let { videoLoading, clientResult} = this.state
     const handleOnDragStart = e => e.preventDefault()
     const settings = {
       className: 'center',
-        dots: true,
         arrows: true,
         infinite: true,
-        slidesToShow: 2,
+        slidesToShow: 1,
          centerPadding: "40px",
         speed: 500,
         centerMode: true,
@@ -129,4 +114,4 @@ componentDidMount() {
     }
 }
 
-export default ClientSlider
+export default withRouter(ClientSlider)

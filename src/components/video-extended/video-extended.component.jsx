@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import sanityClient from '../../Client'
 import ClientSlider from '../carousel/carousel.component'
@@ -57,47 +57,29 @@ const Team = styled.div`
 
 
 
-class VideoExtended extends Component {
-
-  constructor(props) {
-  super(props)
-  this.state = {
-    videoLoading: true,
-    video: '',
-  }
-}
-
-componentDidMount() {
-
-  const videoQuery = `*[_type == "video" && title == "${this.props.match.params.videoId}"]{
-    date, description, clientWork, title, vimeoLink, bts, teamMembers[]->{name}, client[]->{_id, clientName}}
-  `
-  sanityClient.fetch(videoQuery).then(video => {
-    video.forEach(video => {
-        this.setState({
-          video: video
-        })
+const VideoExtended = (props) => {
+  const [video, setVideo] = useState('')
+  useEffect(() => {
+    const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId}"]{
+      date, description, clientWork, title, vimeoLink, bts, teamMembers[]->{name}, client[]->{_id, clientName}}
+    `
+    sanityClient.fetch(videoQuery).then(video => {
+      video.forEach(video => {
+        setVideo(video)
+      })
     })
-      this.setState({
-        videoLoading: false
-    })
-  })
+  }, [props.match.params.videoId]) 
 
-}
-
-render() {
- 
-  let { video, videoLoading } = this.state
   return (
-    videoLoading ? <div  className=" AppLoading"><div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> :
       <VideoOuterWrapper>
              <VideoInnerWrapper>
              <VideoTitle>{video.title}</VideoTitle>
-                 {video.client.map((client, id) => {
+                 {video.client ?
+                   video.client.map((client, id) => {
                      return( <p key={id}> {client.clientName} </p>)
-                   })}
+                   }): null}
              <VideoContainer>
-                 <iframe title={video.title} frameBorder="0" allow="autoplay fullscreen" src={`https://player.vimeo.com/video/${video.vimeoLink}`}></iframe>
+                 <iframe title={video.title} frameBorder="0" allow="autoplay" src={`https://player.vimeo.com/video/${video.vimeoLink}`}></iframe>
              </VideoContainer>
              <VideoDescContainer>
                {video.description ? <div>
@@ -121,16 +103,7 @@ render() {
            
            
        </VideoOuterWrapper>
-       
-
-
-
-
   )
-}
-
-
-
 }
 
 

@@ -1,7 +1,16 @@
 .slick-current {
-
+    position: relative;
     img {
         transform: scale(1.1)
     }
     
+}
+.slick-arrow {
+    color: black;
+}
+.slick-prev:before {
+    color: black
+}
+.slick-next:before {
+    color: black
 }
