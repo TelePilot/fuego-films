@@ -43,6 +43,7 @@ const ClientLinkImg = styled.img`
   width: 150px;
   height: auto;
   color: black;
+  transition: all ease-in-out .4s;
 `
 
 class ClientSlider extends React.Component {

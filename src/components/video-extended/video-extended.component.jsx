@@ -18,7 +18,8 @@ const VideoInnerWrapper = styled.div`
  justify-content: center;
  align-items: center;
  flex-flow: column;
- margin-top: 100px;`
+ margin-top: 100px;
+ min-width: 80%;`
 
 const VideoContainer = styled.div`
   min-width: 100%;
@@ -99,7 +100,7 @@ render() {
                  <iframe title={video.title} frameBorder="0" allow="autoplay fullscreen" src={`https://player.vimeo.com/video/${video.vimeoLink}`}></iframe>
              </VideoContainer>
              <VideoDescContainer>
-               {video.description ?  <div>
+               {video.description ? <div>
                 <VideoTitle>About</VideoTitle>
                 
                  <VideoDesc>{video.description}</VideoDesc>
