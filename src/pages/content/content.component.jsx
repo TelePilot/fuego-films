@@ -51,8 +51,10 @@ const Content = () => {
            if(
             videoArray.filter(e => e.client !== undefined)
            ) {
-            if(videoArray.filter(e => (e.client > 0 ? e.client[0].clientName : ['hey']) === (video.client.length > 0 ? video.client[0].clientName : ['hey']) ).length > 0) {
-           
+            if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
+             const result = videoArray.filter(e => e.client[0].clientName === video.client[0].clientName)
+             console.log(result[0])
+             videoArray.splice(result[0], 1, video)
             }
            }
            
@@ -73,7 +75,7 @@ const Content = () => {
 
     return (
       <ContentContainer>
-        <ContentTitle>Share The Vision</ContentTitle>
+        <ContentTitle>Share The Vision.</ContentTitle>
         <VideoContainer>
         {
               videoArray.map((contentVid, id) =>
