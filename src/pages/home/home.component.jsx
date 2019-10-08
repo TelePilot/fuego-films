@@ -47,23 +47,30 @@ const Home = () => {
 
     const settings = {
       autoPlay: true,
+      stopOnHover: false,
+      interval: 5000,
       showThumbs: false,
       infiniteLoop: true,
       showStatus: false,
-      transitionTime: 800,
+      transitionTime: 1000,
     }
     return (
 
       <HomeContainer>
-        <HomeCarousel {...settings}>
-            {
-              home.map((homeVid, id) =>
-              <div key={id}>
-                 <VideoImage home={true} video={homeVid} />
-              </div>
-              )
-            }
-        </HomeCarousel>
+        {
+          home.length > 0 ? 
+          <HomeCarousel {...settings}>
+          {
+            home.map((homeVid, id) =>
+            <div key={id}>
+               <VideoImage home={true} video={homeVid} />
+            </div>
+            )
+          }
+      </HomeCarousel>
+      : null
+        }
+       
       </HomeContainer>
     )
 
