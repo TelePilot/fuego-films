@@ -10,10 +10,14 @@ const AnimatedMenuItem = animated(NavLink)
 
 const MenuItem = styled(AnimatedMenuItem)`
   cursor: pointer;
-  color: white;
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
   margin: 10px 0;
   font-size: 32px;
-  text-decoration: none;
+  transition:color ease-in-out .3s;
+  &:hover {
+    color: rgba(255,255,255,1);
+  }
  
 `
 
@@ -100,7 +104,8 @@ const HamburgerMenu = ({ menu }) => {
                   }
               }} />
         {trail.map((props, index) => (
-           <MenuItem key={items[index]} style={props} onClick={() => menuOpenSwitch(false)} to={items[index].name === 'home' ? '/' : `/${items[index].name}`}>{items[index].name}</MenuItem>
+           <MenuItem key={items[index]} style={props} onClick={() => menuOpenSwitch(false)} to={items[index].name === 'home' ? '/' : `/${items[index].name}`}>{items[index].name}
+            </MenuItem>
           )
         )}
       </Menu>
