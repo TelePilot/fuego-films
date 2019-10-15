@@ -62,10 +62,58 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
+  display: flex;
+  justify-content: center;
   padding: 20% 5%;
-  background:white;
+  background-color: #160001;
+  position: relative;
+  // background: url('https://media.giphy.com/media/xT9IgqjmZ870vakg4E/giphy.gif');
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
+  
 }
+.flame {
+  background: transparent;
+  border-radius: 50%;
+  &:before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    bottom: -45px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 10%;
+    opacity: 0;
+    background: radial-gradient(ellipse at bottom, rgba(255,130, 0, .5) 5%,black  80%), radial-gradient(ellipse at 10% 20%, yellow, red);
+    animation: flicker-light 5s infinite alternate;
+  }
 
+  @keyframes flicker-light {
+    0% {opacity: 0;}
+    10% {opacity:.5;}
+    20% {opacity:.3;}
+    23% {opacity:.4;}
+    26% {opacity:.3;}
+    30% {opacity:.2;}
+    40% {opacity:.4;}
+    50% {opacity: 0;}
+    60% {opacity:.5;}
+    70% {opacity:.3;}
+    73% {opacity:.4;}
+    76% {opacity:.3;}
+    80% {opacity:.2;}
+    90% {opacity:.4;}
+  }
+}
+.particles {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
   fill: rgba(255,255,255,0.5);

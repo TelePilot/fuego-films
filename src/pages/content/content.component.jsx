@@ -53,12 +53,8 @@ const Content = () => {
             videoArray.filter(e => e.client !== undefined)
            ) {
             if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
-              console.log(video)
-            //  const result = videoArray.filter(e => e.client[0].clientName === video.client[0].clientName)
-            //  console.log(result[0])
              videoArray.splice(0, 1, video)
             }
-
            else {
             videoArray.push(video)
            }
