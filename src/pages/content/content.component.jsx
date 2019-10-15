@@ -35,8 +35,9 @@ const Content = () => {
 
   const [videoArray, setVideoArray] = useState([])
   useEffect(() =>  {
+    // add thumbnail
     const videoQuery = `*[_type == "video"]{
-     clientWork, title, thumbnail, client[]->{clientName}}
+     clientWork, title, client[]->{clientName}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
@@ -52,16 +53,16 @@ const Content = () => {
             videoArray.filter(e => e.client !== undefined)
            ) {
             if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
+              console.log(video)
             //  const result = videoArray.filter(e => e.client[0].clientName === video.client[0].clientName)
             //  console.log(result[0])
              videoArray.splice(0, 1, video)
             }
-           }
-           
+
            else {
             videoArray.push(video)
            }
-           
+           }
           }
           else {
             videoArray.push(video)

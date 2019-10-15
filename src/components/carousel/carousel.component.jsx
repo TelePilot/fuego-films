@@ -61,8 +61,9 @@ class ClientSlider extends React.Component {
         }
       }
 componentDidMount() {
+  // add thumbnail
     const videoQuery = `*[_type == "video" && references('${this.props.clientId}')]{
-      date, description, title, thumbnail, vimeoLink, teamMembers[]->{name}, client[]->{clientName, description}}
+      date, description, title,  vimeoLink, teamMembers[]->{name}, client[]->{clientName, description}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       
@@ -103,7 +104,8 @@ componentDidMount() {
               <ClientSlideContainer onDragStart={handleOnDragStart} key={id}>
                 <ClientLink to={`/content/${clientVideo.title}`}>
                   <LinkTitle>{clientVideo.title}</LinkTitle>
-                  <ClientLinkImg alt="client img" src={urlFor(clientVideo.thumbnail).url()}/>
+                  {/* {urlFor(clientVideo.thumbnail).url()} */}
+                  <ClientLinkImg alt="client img" src="https://i0.wp.com/www.twobuttonsdeep.com/wp-content/uploads/2018/07/guy-fieiri-flame.jpg?resize=560%2C373"/>
                 </ClientLink>
               </ClientSlideContainer>
             )

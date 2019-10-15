@@ -44,16 +44,16 @@ const VideoDescContainer = styled.div`
 const VideoDesc = styled.p`
   `  
 
-const Team = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
+// const Team = styled.div`
+//   display: flex;
+//   justify-content: flex-start;
+//   width: 100%;
   
-  * {
-    padding: 0;
-    margin: 2px 0;
-    margin-right: 5px; 
-  }`
+//   * {
+//     padding: 0;
+//     margin: 2px 0;
+//     margin-right: 5px; 
+//   }`
 
 
 
@@ -61,7 +61,7 @@ const VideoExtended = (props) => {
   const [video, setVideo] = useState('')
   useEffect(() => {
     const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId}"]{
-      date, description, clientWork, title, vimeoLink, bts, teamMembers[]->{name}, client[]->{_id, clientName}}
+      date, description, clientWork, title, vimeoLink, bts, client[]->{_id, clientName}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       video.forEach(video => {
