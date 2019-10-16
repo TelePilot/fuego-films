@@ -32,18 +32,17 @@ const ImageContainer = styled.div`
   height: 250px;`
 
 const Content = () => {
-
+  
   const [videoArray, setVideoArray] = useState([])
   useEffect(() =>  {
     // add thumbnail
-    const videoQuery = `*[_type == "video"]{
+    const videoQuery = `*[_type == "video"] | order(date desc){
      clientWork, title, client[]->{clientName}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
-      
+    
       video.forEach(video => {
-          
           if(videoArray.length <= 0) {
             
             videoArray.push(video)
@@ -53,9 +52,12 @@ const Content = () => {
             videoArray.filter(e => e.client !== undefined)
            ) {
             if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
-             videoArray.splice(0, 1, video)
+            
+            //  videoArray.splice(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName), 1, video)
+            
             }
            else {
+            console.log(video, 'unfiltered')
             videoArray.push(video)
            }
            }
@@ -66,8 +68,12 @@ const Content = () => {
 
       }
       )
+      const uniq = [...new Set(videoArray)]
+      console.log(uniq)
       setVideoArray(videoArray)
+     
     })
+    
   }, [])
 
     return (

@@ -18,9 +18,7 @@ const MenuItem = styled(AnimatedMenuItem)`
   &:hover {
     color: rgba(255,255,255,1);
   }
- 
 `
-
 
 const HamburgerMenu = ({ menu }) => {
   const items = menu
@@ -31,7 +29,7 @@ const HamburgerMenu = ({ menu }) => {
     transform: 'translate3D(0,50px,0)',
 
   }))
-    
+
     const [menuOpen, menuOpenSwitch] = useState(false)
 
     const toggleMenu = (state) => {
