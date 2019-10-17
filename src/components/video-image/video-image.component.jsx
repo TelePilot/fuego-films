@@ -80,7 +80,7 @@ const VideoImage = ({ video, home }) => {
   return (
     <VideoLink to={`/content/${video.title}`}>
           
-            <VideoItemContainer  className={!home ? 'hover' : null} >
+            <VideoItemContainer className={!home ? 'hover' : null} >
           
               <VideoItemOverlay />
               <VideoImgContainer>  
