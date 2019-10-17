@@ -16,7 +16,6 @@ const VideoContainer = styled.div`
   display: grid;
   grid-template-columns:1fr 1fr 1fr;
   width: 85%;
-  margin-top: 5%;
   grid-gap: 15px;
   @media screen and (max-width: 1200px) {
     grid-template-columns:1fr 1fr;
@@ -29,18 +28,49 @@ const VideoContainer = styled.div`
  `
 const ImageContainer = styled.div`
   width: 100%;
-  height: 250px;`
+  height: 250px;
+ `
+
+  const CatCont = styled.div`
+  width: 100%;
+  height: auto
+`
+const CatButton = styled.button`
+  cursor: pointer;
+  border-radius: 20px;
+  background: #e9eef7;
+  color: black;
+  padding: 5px 10px;
+  margin: 2% 5px;
+  transition: all ease-in-out .2s;
+  &:hover {
+   background: #f5f7fa;
+  }` 
 
 const Content = () => {
-  
+  const [category, setCategory] = useState([])
+
+       useEffect(() =>  {
+           const catArray = []
+        const catQuery = `*[_type == "categories"]{
+            category
+        }
+        `
+       sanityClient.fetch(catQuery).then(cat => {
+        cat.forEach(cat => {
+            catArray.push(cat)
+        })
+        setCategory(catArray)
+    })}, [])
   const [videoArray, setVideoArray] = useState([])
+  const [ogArray, setOgArray] = useState([])
   useEffect(() =>  {
-    // add thumbnail
     const videoQuery = `*[_type == "video"] | order(date desc){
-     clientWork, title, client[]->{clientName}}
+     clientWork, title, client[]->{clientName}, categories[]->{category}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
+
     
       video.forEach(video => {
           if(videoArray.length <= 0) {
@@ -57,7 +87,7 @@ const Content = () => {
             
             }
            else {
-            console.log(video, 'unfiltered')
+        
             videoArray.push(video)
            }
            }
@@ -68,17 +98,40 @@ const Content = () => {
 
       }
       )
-      const uniq = [...new Set(videoArray)]
-      console.log(uniq)
+      setOgArray(videoArray)
       setVideoArray(videoArray)
      
     })
     
   }, [])
+  let filteredVideos = []
+  function filter(cat) {
+    if(cat.toLowerCase() === 'all') {
+      setVideoArray(ogArray)
+      return
+    }
+     filteredVideos = ogArray.filter(v => {
+       if(v.categories !== undefined) {
+      return v.categories.every(c => cat === c.category)
+       }
+       return null
+  })
+  if (filteredVideos.length > 0) {
+    setVideoArray(filteredVideos)
+  } else {
+    setVideoArray(ogArray)
+  }}
+
 
     return (
       <ContentContainer>
+       
         <ContentTitle>Share The Vision.</ContentTitle>
+        <CatCont>
+            {category.map((cat, id) => {
+               return <CatButton key={id} onClick={() => {filter(cat.category)}}>{cat.category}</CatButton>
+            })}
+        </CatCont>
         <VideoContainer>
         {
               videoArray.map((contentVid, id) =>
