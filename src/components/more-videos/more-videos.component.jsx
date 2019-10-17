@@ -26,17 +26,23 @@ const ImageContainer = styled.div`
 
  
 
-const MoreVids = ( category ) => {
+const MoreVids = ( {category, currentVideo} ) => {
+  
     const [moreVids, setMoreVids] = useState([])
     useEffect(() => {
         if(category !== undefined) {
             const categoryArray = []
-            const videoQuery = `*[_type == "video" && references('${category.category}')]{
+            const videoQuery = `*[_type == "video" && references('${category}')]{
                 title, thumbnail, client[]->{_id, clientName} }
               `
               sanityClient.fetch(videoQuery).then(video => {
                 video.forEach(video => {
+                  if(currentVideo.title !== video.title) {
                     categoryArray.push(video)
+                  }
+                   
+                  
+                   
                   
                 })
                 setMoreVids(categoryArray)
@@ -44,7 +50,7 @@ const MoreVids = ( category ) => {
         } else {
            return null
         }
-      }, [category]) 
+      }, [category, currentVideo]) 
      
     return (
         moreVids.length > 0 ? 

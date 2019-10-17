@@ -65,7 +65,8 @@ const VideoExtended = (props) => {
       })
     })
   }, [props.match.params.videoId]) 
- 
+
+ console.log(video)
   return (
       <VideoOuterWrapper>
              <VideoInnerWrapper>
@@ -96,14 +97,14 @@ const VideoExtended = (props) => {
                 {video.client.map((client, id) => {
                           return( <p key={id}> More By {client.clientName} </p>)
                         })}
-                          <MoreVids category={video.client[0]._id}/> 
+                          <MoreVids currentVideo={video} category={video.client[0]._id}/> 
               </div>
 
                 : <BTSMoreVidCont>
                   <BTS video={video} />
                   {video.categories ? <div>
                     <p>More Like This</p>
-                    <MoreVids category={video.categories[0]._id}/> 
+                    <MoreVids currentVideo={video} category={video.categories[0]._id}/> 
                   </div> : null}
                   
                 </BTSMoreVidCont> 
