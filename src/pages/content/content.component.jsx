@@ -9,6 +9,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  margin-bottom: 50px;
   `
 const ContentTitle = styled.h1`
 margin-top: 80px;`
@@ -108,7 +109,6 @@ const Content = () => {
     })
     
   }, [])
-  console.log(videoArray)
 
   let filteredVideos = []
   function filter(cat) {
@@ -124,7 +124,7 @@ const Content = () => {
        return null
   })
   if (filteredVideos.length > 0) {
-    console.log(filteredVideos)
+   
     setIsFiltered(true)
     setVideoArray(filteredVideos)
   } else {

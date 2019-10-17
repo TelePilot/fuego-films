@@ -5,6 +5,7 @@ import HamburgerMenu from '../menu/menu.component'
 import { Link, withRouter } from 'react-router-dom'
 import imageUrlBuilder from '@sanity/image-url'
 import './header.styles.scss'
+import LogoVideo from '../logo-video/logo-video.component'
 
 const builder = imageUrlBuilder(sanityClient)
 function urlFor(source) {
@@ -66,6 +67,7 @@ const HeaderComp = (props) => {
       })
     })
   }, [])
+
   return (
 
     <HeaderContainer className={className} {...props}>

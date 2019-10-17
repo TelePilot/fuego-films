@@ -77,7 +77,6 @@ const VideoImgBackground = styled.div`
 
 
 const VideoImage = ({ video, home, filtered }) => {
-  console.log(filtered)
   return (
     <VideoLink to={`/content/${video.title}`}>
           
