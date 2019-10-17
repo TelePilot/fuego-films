@@ -76,7 +76,8 @@ const VideoImgBackground = styled.div`
 
 
 
-const VideoImage = ({ video, home }) => {
+const VideoImage = ({ video, home, filtered }) => {
+  console.log(filtered)
   return (
     <VideoLink to={`/content/${video.title}`}>
           
@@ -89,10 +90,11 @@ const VideoImage = ({ video, home }) => {
                   <VideoTextContainer>
                   
 
-    {video.clientWork ? null : <VideoTitle>{video.title}</VideoTitle>}
+    {video.clientWork && !filtered ? null : <VideoTitle>{video.title}</VideoTitle>}
                         
                         {video.client ? video.client.map((client, id) => {
-                              return( !video.clientWork ? <ClientText key={id}> {client.clientName} </ClientText> : <VideoTitle key={id}> {client.clientName}</VideoTitle>)
+                              return( !video.clientWork ? <ClientText key={id}>{client.clientName}</ClientText> : 
+                                filtered ? <ClientText key={id}>{client.clientName} </ClientText> : <VideoTitle key={id}>{client.clientName }</VideoTitle>)
                               }): null}
                   </VideoTextContainer>
              

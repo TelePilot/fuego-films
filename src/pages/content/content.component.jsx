@@ -64,15 +64,18 @@ const Content = () => {
     })}, [])
   const [videoArray, setVideoArray] = useState([])
   const [ogArray, setOgArray] = useState([])
+  const [allArray, setAllArray] = useState([])
+  const [isFiltered, setIsFiltered] = useState(false)
   useEffect(() =>  {
     const videoQuery = `*[_type == "video"] | order(date desc){
      clientWork, title, client[]->{clientName}, categories[]->{category}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
-
+      const allArray = []
     
       video.forEach(video => {
+        allArray.push(video)
           if(videoArray.length <= 0) {
             
             videoArray.push(video)
@@ -98,27 +101,34 @@ const Content = () => {
 
       }
       )
+      setAllArray(allArray)
       setOgArray(videoArray)
       setVideoArray(videoArray)
      
     })
     
   }, [])
+  console.log(videoArray)
+
   let filteredVideos = []
   function filter(cat) {
     if(cat.toLowerCase() === 'all') {
       setVideoArray(ogArray)
+      setIsFiltered(false)
       return
     }
-     filteredVideos = ogArray.filter(v => {
+     filteredVideos = allArray.filter(v => {
        if(v.categories !== undefined) {
       return v.categories.every(c => cat === c.category)
        }
        return null
   })
   if (filteredVideos.length > 0) {
+    console.log(filteredVideos)
+    setIsFiltered(true)
     setVideoArray(filteredVideos)
   } else {
+    setIsFiltered(false)
     setVideoArray(ogArray)
   }}
 
@@ -132,15 +142,26 @@ const Content = () => {
                return <CatButton key={id} onClick={() => {filter(cat.category)}}>{cat.category}</CatButton>
             })}
         </CatCont>
+        { isFiltered ?
+         <VideoContainer>
+         {
+               videoArray.map((contentVid, id) =>
+               <ImageContainer key={id}>
+                  <VideoImage filtered={true} video={contentVid} />
+               </ImageContainer>
+               )
+             }
+         </VideoContainer>
+        :
         <VideoContainer>
         {
               videoArray.map((contentVid, id) =>
               <ImageContainer key={id}>
-                 <VideoImage video={contentVid} />
+                 <VideoImage filtered={false} video={contentVid} />
               </ImageContainer>
               )
             }
-        </VideoContainer>
+        </VideoContainer>}
       </ContentContainer>
 
     )
