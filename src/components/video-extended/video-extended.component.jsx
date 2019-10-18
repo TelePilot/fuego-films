@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import sanityClient from '../../Client'
 import BTS from '../bts/bts.component'
 import MoreVids from '../more-videos/more-videos.component'
-
+import { withRouter } from 'react-router-dom'
 
 const VideoOuterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  margin-bottom: 50px`
+  margin-bottom: 100px`
 
 const VideoInnerWrapper = styled.div`
  display: flex;
@@ -103,7 +103,6 @@ const VideoExtended = (props) => {
                 : <BTSMoreVidCont>
                   <BTS video={video} />
                   {video.categories ? <div>
-                    <p>More Like This</p>
                     <MoreVids currentVideo={video} category={video.categories[0]._id}/> 
                   </div> : null}
                   
@@ -129,4 +128,4 @@ const VideoExtended = (props) => {
 }
 
 
-export default VideoExtended
+export default withRouter(VideoExtended)

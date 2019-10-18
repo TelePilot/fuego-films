@@ -54,17 +54,21 @@ const MoreVids = ( {category, currentVideo} ) => {
      
     return (
         moreVids.length > 0 ? 
-        
-        <VideoContainer>
-        {
-              moreVids.map((contentVid, id) =>
-              <ImageContainer key={id}>
-                 <VideoImage video={contentVid} />
-              </ImageContainer>
-              )
-            }
-        </VideoContainer>
-        
+        <div>
+         { currentVideo.clientWork ? null : <p>More Like This</p>}
+           <VideoContainer>
+          
+          {
+                moreVids.map((contentVid, id) =>
+                <ImageContainer key={id}>
+                   <VideoImage video={contentVid} />
+                </ImageContainer>
+                )
+              }
+          </VideoContainer>
+          
+        </div>
+       
        
         : null
     )
