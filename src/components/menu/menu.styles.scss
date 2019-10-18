@@ -116,7 +116,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: rgba(255,255,255,0.5);
+  fill: rgba(0,0,0,1);
   width: 100% !important;
 }
 
@@ -135,6 +135,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   top: 0;
   left: 0;
-  background: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
 }
 

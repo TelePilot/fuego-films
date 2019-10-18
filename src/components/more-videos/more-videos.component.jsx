@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import sanityClient from '../../Client'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import VideoImage from '../video-image/video-image.component'
 import { withRouter } from 'react-router-dom'
 

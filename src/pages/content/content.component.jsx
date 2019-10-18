@@ -33,19 +33,27 @@ const ImageContainer = styled.div`
  `
 
   const CatCont = styled.div`
-  width: 100%;
-  height: auto
+  width: 85%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `
 const CatButton = styled.button`
   cursor: pointer;
   border-radius: 20px;
-  background: #e9eef7;
-  color: black;
-  padding: 5px 10px;
+  background: rgba(230,230,255,0.2);
+  
+  color: rgba(0,0,0,0.5);
+  padding: 5px 15px;
+  font-size:12px;
+  border: none;
   margin: 2% 5px;
   transition: all ease-in-out .2s;
   &:hover {
-   background: #f5f7fa;
+   background: #800020;
+   color: rgba(255,255,255,0.8) ;
+   transform: scale(1.05)
   }` 
 
 const Content = () => {
