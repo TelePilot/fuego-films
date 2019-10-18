@@ -19,6 +19,7 @@ const HomeCarousel = styled(Carousel)`
   overflow: hidden;
   height: auto;
   padding: 0;
+  background: black;
 
   .slide iframe {
     margin: 0 !important;
