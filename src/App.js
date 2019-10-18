@@ -11,7 +11,7 @@ const AboutPage = lazy(() => import('./pages/about/about.component'))
 const ContentPage = lazy(() => import('./pages/content/content.component'))
 
 const App = () => {
-    console.log('render')
+   
       return (
        
           <div id="outer-container" className="App">

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import sanityClient from '../../Client'
 import BTS from '../bts/bts.component'
 import MoreVids from '../more-videos/more-videos.component'
+import Spinner from '../spinner/spinner.component'
 import { withRouter } from 'react-router-dom'
 
 const VideoOuterWrapper = styled.div`
@@ -54,20 +55,27 @@ const VideoDesc = styled.p`
 
 
 const VideoExtended = (props) => {
+ 
   const [video, setVideo] = useState('')
   useEffect(() => {
-    const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId}"]{
-      date, description,categories[]->{_id, category}, clientWork, title, vimeoLink, bts, client[]->{_id, clientName}}
+    console.log(props.match.params.videoId)
+    const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId}"]{date, description,categories[]->{_id, category}, clientWork, title, vimeoLink, bts, client[]->{_id, clientName}}
     `
+    
     sanityClient.fetch(videoQuery).then(video => {
+      console.log(video)
       video.forEach(video => {
         setVideo(video)
       })
     })
-    return
+    
+    return (() => {
+      console.log('unmounted')
+    })
   }, [props.match.params.videoId]) 
 
   return (
+    video.length <= 0 ? <Spinner></Spinner> :
       <VideoOuterWrapper>
              <VideoInnerWrapper>
              <VideoTitle>{video.title}</VideoTitle>
