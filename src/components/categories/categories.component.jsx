@@ -23,7 +23,8 @@ const Categories = () => {
             catArray.push(cat)
         })
         setCategory(catArray)
-    })}, [])
+    })
+return}, [])
     console.log(category)
     return (
         <CatCont>

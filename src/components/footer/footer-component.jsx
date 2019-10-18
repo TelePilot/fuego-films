@@ -20,7 +20,7 @@ setFooter(footer)
     setFooter(footer)
   })
 })
-
+return
 }, [])
 
     return (

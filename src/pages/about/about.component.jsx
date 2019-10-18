@@ -94,6 +94,7 @@ const About = () => {
        setAbout(about)
       })
     })
+    return
   }, [])
  
 

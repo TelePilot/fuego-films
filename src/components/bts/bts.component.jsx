@@ -16,7 +16,7 @@ const BTSWrapper = styled.div`
   align-items: center;
   flex-flow: wrap column;
   height: auto;
-  margin-top: 100px;`
+`
 
 const BTSContainer = styled.div`
   display: grid;

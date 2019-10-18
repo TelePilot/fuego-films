@@ -49,6 +49,7 @@ const MoreVids = ( {category, currentVideo} ) => {
         } else {
            return null
         }
+        return
       }, [category, currentVideo]) 
      
     return (

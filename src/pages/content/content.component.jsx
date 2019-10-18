@@ -70,7 +70,8 @@ const Content = () => {
             catArray.push(cat)
         })
         setCategory(catArray)
-    })}, [])
+    })
+  return}, [])
   const [videoArray, setVideoArray] = useState([])
   const [ogArray, setOgArray] = useState([])
   const [allArray, setAllArray] = useState([])
@@ -115,7 +116,7 @@ const Content = () => {
       setVideoArray(videoArray)
      
     })
-    
+    return
   }, [])
 
   let filteredVideos = []

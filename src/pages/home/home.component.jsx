@@ -43,6 +43,7 @@ const Home = () => {
       })
       setHome(HomeArray)
     })
+    return
   }, [])
 
     const settings = {

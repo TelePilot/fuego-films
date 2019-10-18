@@ -64,9 +64,9 @@ const VideoExtended = (props) => {
         setVideo(video)
       })
     })
+    return
   }, [props.match.params.videoId]) 
 
- console.log(video)
   return (
       <VideoOuterWrapper>
              <VideoInnerWrapper>

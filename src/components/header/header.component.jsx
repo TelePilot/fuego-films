@@ -66,6 +66,7 @@ const HeaderComp = (props) => {
         setHeader(header)
       })
     })
+    return
   }, [])
 
   return (
