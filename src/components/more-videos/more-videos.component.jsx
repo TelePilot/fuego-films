@@ -15,12 +15,16 @@ const VideoContainer = styled.div`
   }
   @media screen and (max-width: 1000px) {
     grid-template-columns:1fr;
-    width: 95%;
+    width: 90%;
+    margin-left: 5%;
   }
  `
 const ImageContainer = styled.div`
   width: 100%;
   height: 250px;
+  @media screen and (max-width: 1000px) {
+    height: 200px;
+  }
  `
 
  

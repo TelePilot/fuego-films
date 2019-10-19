@@ -19,7 +19,10 @@ const VideoInnerWrapper = styled.div`
  align-items: center;
  flex-flow: column;
  margin-top: 80px;
- min-width: 80%;`
+ min-width: 80%;
+ @media screen and (max-width: 1000px) {
+   min-width: 90%;
+ }`
 
 const VideoContainer = styled.div`
   min-width: 100%;
@@ -34,7 +37,8 @@ const VideoContainer = styled.div`
 
   }`
 const BTSMoreVidCont = styled.div`
-  width: 100%;`
+  width: 100%;
+ ;`
 const VideoTitle = styled.h2`
   margin: 5px 0;`
 const MoreBy = styled.div`
