@@ -84,8 +84,7 @@ const VideoImage = ({ video, home, filtered }) => {
           
               <VideoItemOverlay />
               <VideoImgContainer>  
-               {/* Add below style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}} */}
-                <VideoImgBackground style={!home ? {height: '100%', background: 'red'} : {height: '100vh', background: 'red'}} />      
+                <VideoImgBackground style={!home ? {height: '100%', backgroundImage:`url(${urlFor(video.thumbnail).url()})`} : {height: '100vh', backgroundImage:`url(${urlFor(video.thumbnail).url()})`}} />      
                   <VideoTextContainer>
                   
 

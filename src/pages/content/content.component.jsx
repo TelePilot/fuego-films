@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import sanityClient from '../../Client'
 import VideoImage from '../../components/video-image/video-image.component'
 
+
 const ContentContainer = styled.div`
   width: 100%;
   display: flex;
@@ -12,7 +13,10 @@ const ContentContainer = styled.div`
   margin-bottom: 50px;
   `
 const ContentTitle = styled.h1`
-margin-top: 80px;`
+margin-top: 80px;
+@media screen and (max-width: 1000px) {
+  font-size: 18px
+}`
 const VideoContainer = styled.div`
   display: grid;
   grid-template-columns:1fr 1fr 1fr;
@@ -83,7 +87,7 @@ const Content = () => {
   const [isFiltered, setIsFiltered] = useState(false)
   useEffect(() =>  {
     const videoQuery = `*[_type == "video"] | order(date desc){
-     clientWork, title, client[]->{clientName}, categories[]->{category}}
+     clientWork, title, thumbnail, client[]->{clientName}, categories[]->{category}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []

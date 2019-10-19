@@ -14,7 +14,7 @@ const AboutWrapper = styled.div`
 const AboutHeader = styled.h1`
 margin: 80px 0 0 0;
   @media screen and (max-width: 1000px) {
-    font-size: 22px;
+    font-size: 18px;
    
 } 
 `
@@ -37,6 +37,9 @@ const AboutDescContainer = styled.div`
 
     h2 {
       font-size: 20px
+      @media screen and (max-width: 1000px) {
+        font-size: 16px
+      }
     }
     p {
       font-size: 14px

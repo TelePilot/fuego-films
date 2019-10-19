@@ -30,11 +30,6 @@ export default class LogoVideo extends React.Component {
         this.play = this.play.bind(this)
         this.pause = this.pause.bind(this)
         this.load = this.load.bind(this)
-        this.changeCurrentTime = this.changeCurrentTime.bind(this)
-        this.seek = this.seek.bind(this)
-        this.changePlaybackRateRate = this.changePlaybackRateRate.bind(this)
-        this.changeVolume = this.changeVolume.bind(this)
-        this.setMuted = this.setMuted.bind(this)
       }
     
       componentDidMount() {
@@ -67,32 +62,6 @@ export default class LogoVideo extends React.Component {
         this.player.load()
       }
     
-      changeCurrentTime(seconds) {
-        return () => {
-          const { player } = this.player.getState()
-          this.player.seek(player.currentTime + seconds)
-        }
-      }
-    
-      seek(seconds) {
-        return () => {
-          this.player.seek(seconds)
-        }
-      }
-    
-      changePlaybackRateRate(steps) {
-        return () => {
-          const { player } = this.player.getState()
-          this.player.playbackRate = player.playbackRate + steps
-        }
-      }
-    
-      changeVolume(steps) {
-        return () => {
-          const { player } = this.player.getState()
-          this.player.volume = player.volume + steps
-        }
-      }
     
       changeSource(name) {
         return () => {
@@ -107,9 +76,10 @@ export default class LogoVideo extends React.Component {
     render() {
         return (
             <div>
-                <Video  ref={player => {this.player = player}}
+                <Video controls={false} autoPlay={true} loop={true} ref={player => {this.player = player}}
                  >
-                <source onMouseEnter={this.play} onMouseLeave={this.pause} src={this.state.source}/>
+                <source  src={this.state.source}/>
+                
                  </Video>
             </div>
         )
