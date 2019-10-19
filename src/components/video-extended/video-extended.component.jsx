@@ -40,7 +40,10 @@ const BTSMoreVidCont = styled.div`
   width: 100%;
  ;`
 const VideoTitle = styled.h2`
-  margin: 5px 0;`
+  margin: 5px 0;
+  @media screen and (max-width: 1000px) {
+    font-size: 18px
+  }`
 const MoreBy = styled.div`
   width: 100%;
   height: auto`
