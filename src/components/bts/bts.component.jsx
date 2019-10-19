@@ -21,7 +21,12 @@ const BTSWrapper = styled.div`
 const BTSContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2%;`  
+  grid-gap: 2%;
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin-left: 5%;
+  }`  
 
 const BTSImgContainer = styled.div`
   min-width: 100%;`
