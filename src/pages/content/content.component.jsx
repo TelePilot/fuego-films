@@ -47,6 +47,13 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  @media screen and (max-width: 1000px) { 
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 5px;
+  }
+  
 `
 const CatButton = styled.button`
   cursor: pointer;
@@ -62,7 +69,11 @@ const CatButton = styled.button`
   &:hover {
    background: #800020;
    color: rgba(255,255,255,0.8) ;
-   transform: scale(1.05)
+  }
+  @media screen and (max-width: 1000px) {
+    font-size: 10px;
+    padding: 5px 5px;
+    
   }` 
 
 const Content = () => {
