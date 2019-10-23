@@ -62,27 +62,32 @@ const VideoDesc = styled.p`
 
 
 const VideoExtended = (props) => {
- 
   const [video, setVideo] = useState('')
   useEffect(() => {
-    console.log(props.match.params.videoId)
-    const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId}"]{date, description,categories[]->{_id, category}, clientWork, title, vimeoLink, bts, client[]->{_id, clientName}}
+    
+    const videoQuery = `*[_type == "video" && title == "${props.match.params.videoId.trim()}"]{date, description,categories[]->{_id, category}, clientWork, title, vimeoLink, bts, client[]->{_id, clientName}}
     `
     
     sanityClient.fetch(videoQuery).then(video => {
-      console.log(video)
+     if(video.length <= 0)  {
+      setVideo('noVid')
+      }
       video.forEach(video => {
+       
         setVideo(video)
       })
     })
     
-    return (() => {
-      console.log('unmounted')
-    })
+    return 
   }, [props.match.params.videoId]) 
 
   return (
-    video.length <= 0 ? <Spinner></Spinner> :
+    video.length <= 0 || video === 'noVid' ? 
+    <div>
+      <Spinner></Spinner>
+      {video === 'noVid' ? <VideoTitle>Video Not Found :(</VideoTitle> : null}
+     
+    </div> :
       <VideoOuterWrapper>
              <VideoInnerWrapper>
              <VideoTitle>{video.title}</VideoTitle>

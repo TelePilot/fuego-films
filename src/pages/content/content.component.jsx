@@ -98,7 +98,7 @@ const Content = () => {
   const [isFiltered, setIsFiltered] = useState(false)
   useEffect(() =>  {
     const videoQuery = `*[_type == "video"] | order(date desc){
-     clientWork, title, thumbnail, client[]->{clientName}, categories[]->{category}}
+    _id, clientWork, title, thumbnail, client[]->{clientName, _id}, categories[]->{category}}
     `
     sanityClient.fetch(videoQuery).then(video => {
       const videoArray = []
@@ -107,25 +107,29 @@ const Content = () => {
       video.forEach(video => {
         allArray.push(video)
           if(videoArray.length <= 0) {
-            
+          
             videoArray.push(video)
           }
-         else if (video.clientWork) {
+         else if (video.clientWork && video.client !== undefined) {
+           
            if(
-            videoArray.filter(e => e.client !== undefined)
+            videoArray.filter(e => e.clientWork && e.client !== undefined)
            ) {
-            if(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName).length > 0) {
-            
+  
+           
+            if(videoArray.filter(e => e.clientWork && e.client[0].clientName === video.client[0].clientName).length > 0) {
+             
             //  videoArray.splice(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName), 1, video)
-            
+           
             }
            else {
-        
+            
             videoArray.push(video)
            }
            }
           }
           else {
+           
             videoArray.push(video)
           }
 
@@ -139,6 +143,7 @@ const Content = () => {
     return
   }, [])
 
+ 
   let filteredVideos = []
   function filter(cat) {
     if(cat.toLowerCase() === 'all') {

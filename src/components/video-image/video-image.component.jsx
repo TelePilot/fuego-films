@@ -78,7 +78,9 @@ const VideoImgBackground = styled.div`
 
 const VideoImage = ({ video, home, filtered }) => {
   return (
-    <VideoLink onClick={() => window.scrollTo(0, 0)} to={`/content/${video.title}`}>
+    <VideoLink onClick={() => window.scrollTo(0, 0)} to={{
+      pathname:`/content/${video.title}`,
+    }}>
           
             <VideoItemContainer className={!home ? 'hover' : null} >
           
