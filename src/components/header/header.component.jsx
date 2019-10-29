@@ -34,7 +34,9 @@ const LogoContainer = styled.div`
   height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;`
+  align-items: center;
+  overflow: hidden;
+ `
 
 const LogoLink = styled(Link)`
   width: 100%;
