@@ -78,6 +78,10 @@ const CatButton = styled.button`
 
 const Content = () => {
   const [category, setCategory] = useState([])
+  const [videoArray, setVideoArray] = useState([])
+  const [ogArray, setOgArray] = useState([])
+  const [allArray, setAllArray] = useState([])
+  const [isFiltered, setIsFiltered] = useState(false)
 
        useEffect(() =>  {
            const catArray = []
@@ -92,10 +96,8 @@ const Content = () => {
         setCategory(catArray)
     })
   return}, [])
-  const [videoArray, setVideoArray] = useState([])
-  const [ogArray, setOgArray] = useState([])
-  const [allArray, setAllArray] = useState([])
-  const [isFiltered, setIsFiltered] = useState(false)
+  
+
   useEffect(() =>  {
     const videoQuery = `*[_type == "video"] | order(date desc){
     _id, clientWork, title, thumbnail, client[]->{clientName, _id}, categories[]->{category}}
@@ -138,12 +140,10 @@ const Content = () => {
       setAllArray(allArray)
       setOgArray(videoArray)
       setVideoArray(videoArray)
-     
     })
     return
   }, [])
 
- 
   let filteredVideos = []
   function filter(cat) {
     if(cat.toLowerCase() === 'all') {

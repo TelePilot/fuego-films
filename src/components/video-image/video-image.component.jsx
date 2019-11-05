@@ -27,7 +27,6 @@ const VideoLink = styled(Link)`
   color: white;
   text-decoration: none;
   position: relative;
-  
 `   
 
 
@@ -79,7 +78,7 @@ const VideoImgBackground = styled.div`
 const VideoImage = ({ video, home, filtered }) => {
   return (
     <VideoLink onClick={() => window.scrollTo(0, 0)} to={{
-      pathname:`/content/${video.title}`,
+      pathname:`/content/${video.title}`
     }}>
           
             <VideoItemContainer className={!home ? 'hover' : null} >

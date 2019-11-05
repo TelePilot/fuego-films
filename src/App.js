@@ -3,7 +3,7 @@ import { Route, Switch} from 'react-router-dom'
 import './App.css'
 import Header from './components/header/header.component'
 import Spinner from './components/spinner/spinner.component'
-import VideoExtended from './components/video-extended/video-extended.component'
+import VideoContainer from './components/video-extended-container/video-extended-container.component'
 import ErrorBoundary from './components/error-boundary/error-boundary.component'
 
 const HomePage = lazy(() => import('./pages/home/home.component'))
@@ -31,12 +31,11 @@ const App = () => {
                   <Route exact
                     path={'/content'}
                     component={ContentPage}/>
-                  <Route path={`/content/:videoId`} render={
-                        (props) => {
-                          return <VideoExtended {...props} />
-                        }
-                      }
+                    <Switch>
+                    <Route exact path={`/content/:videoId`} children={VideoContainer}
                   />
+                    </Switch>
+                  
                   <Route
                     path={'/home'}
                     component={HomePage}/>
