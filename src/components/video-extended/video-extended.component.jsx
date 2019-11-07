@@ -25,14 +25,14 @@ const VideoInnerWrapper = styled.div`
 
 
 const VideoTitle = styled.h2`
-  margin: 5px 0;
+  margin: 5px 0 0 0;
   @media screen and (max-width: 1000px) {
     font-size: 18px
   }`
 
 
 const VideoDesc = styled.p`
-
+  margin: 0 0 25px 0;
   `  
 
 
