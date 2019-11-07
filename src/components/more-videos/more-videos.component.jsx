@@ -26,7 +26,8 @@ const ImageContainer = styled.div`
     height: 200px;
   }
  `
-
+const MoreByP = styled.p`
+  margin: 25px 0;`
  
 
 const MoreVids = ( {category, currentVideo} ) => {
@@ -59,7 +60,7 @@ const MoreVids = ( {category, currentVideo} ) => {
     return (
         moreVids.length > 0 ? 
         <div>
-         { currentVideo.clientWork ? null : <p>More Like This</p>}
+         { currentVideo.clientWork ? null : <MoreByP>More Like This</MoreByP>}
            <VideoContainer>
           
           {

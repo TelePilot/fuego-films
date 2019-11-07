@@ -11,13 +11,16 @@ const BTSMoreVidCont = styled.div`
  width: 100%;
  height: auto`
 
+ const MoreByP = styled.p`
+  margin: 25px 0;`
+
 const MoreBy = ({video}) => {
 
     return (
         <MoreByCont>
         { video.clientWork ? <div>
           {video.client.map((client, id) => {
-                    return( <p key={id}> More By {client.clientName} </p>)
+                    return( <MoreByP key={id}> More By {client.clientName} </MoreByP>)
                   })}
                     <MoreVids currentVideo={video} category={video.client[0]._id}/> 
         </div>
