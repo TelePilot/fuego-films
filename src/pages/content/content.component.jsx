@@ -85,7 +85,7 @@ const Content = () => {
 
        useEffect(() =>  {
            const catArray = []
-        const catQuery = `*[_type == "categories"]{
+        const catQuery = `*[_type == "categories"] | order(date desc){
             category
         }
         `
