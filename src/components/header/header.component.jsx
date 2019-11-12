@@ -70,13 +70,13 @@ const HeaderComp = (props) => {
     })
     return
   }, [])
-
+  console.log(window.location.pathname)
   return (
 
     <HeaderContainer className={className} {...props}>
        <HamburgerMenu menu={header.menu}/>
       <LogoContainer>
-          <LogoLink to='/'><LogoImg alt="Logo" src={urlFor(header.logo).width(500).url()}/></LogoLink>
+          <LogoLink to='/'><LogoImg alt="Logo" src={window.location.pathname === '/' || window.location.pathname === '/home' ? urlFor(header.invertedLogo).width(500).url() : urlFor(header.logo).width(500).url()}/></LogoLink>
       </LogoContainer>
     </HeaderContainer>
   )

@@ -45,6 +45,13 @@ const AboutDescContainer = styled.div`
       font-size: 14px
     }
   }`
+const DetailHeader = styled.p`
+  font-size: 18px;
+  margin: 25px 0 5px 0`
+const Details = styled.p`
+  margin: 2px 0;
+
+`
 
 const AboutDesc = styled.p`
   @media screen and (max-width: 1000px) {
@@ -52,24 +59,24 @@ const AboutDesc = styled.p`
   }
 `  
 
-// const AboutTeamContainer = styled.div`
-//   margin-top: 10%;
-//   width: 100%;
-//   display: flex;
-//   justify-content:flex-start;
-//   flex-flow: row wrap;
+const AboutTeamContainer = styled.div`
 
-//   * {
-//     padding: 0;
-//     margin: 2px 0;
-//     margin-right: 5px;
-//   }
+  width: 100%;
+  display: flex;
+  justify-content:flex-start;
+  flex-flow: row wrap;
 
-//   @media screen and (max-width: 1000px) {
-//     padding: 0 15%;
-//   }
+  * {
+    padding: 0;
+    margin: 2px 0;
+    margin-right: 5px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 0 15%;
+  }
   
-  // `
+  `
 
 const ShowreelContainer = styled.div`
   width: 1000px;
@@ -89,7 +96,7 @@ const About = () => {
   })
   useEffect(() => {
     const aboutQuery = `*[_type == "about"] {
-      header, desc, descHeader, teamMembers[]->{name}
+      header, desc, phone, email, descHeader, teamMembers[]->{name}
     }`
     sanityClient.fetch(aboutQuery).then(about => {
 
@@ -110,12 +117,12 @@ const About = () => {
                 <AboutDescContainer>
                   <h2 style={{margin: '0'}}>{about.descHeader}</h2>
                   <AboutDesc>{about.desc} </AboutDesc>
-                  {/* <AboutTeamContainer>
-                  <p style={{fontWeight:'bold'}}>Team Members: </p>
-                    {about.teamMembers.map((teamMember, id) => {
-                        return( <p key={id}>{ `${teamMember.name}, `}</p>)
-                      })}
-                  </AboutTeamContainer> */}
+                  <AboutTeamContainer>
+                    <p>Founded by Charlie Rees, Edd Roberts and George Harper</p>
+                  </AboutTeamContainer>
+                  <DetailHeader>Get in touch with us:</DetailHeader>
+                  <Details>{about.email}</Details>
+                  <Details>{about.phone}</Details>
                 </AboutDescContainer>
                 <ShowreelContainer >
                  <ShowreelCont />

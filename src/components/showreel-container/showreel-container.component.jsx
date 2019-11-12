@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import sanityClient from '../../Client'
-import Showreel from '../showreel/showreel.component'
+import Player from '../player/player.component'
 
 class ShowreelCont extends Component {
 
@@ -33,8 +33,8 @@ class ShowreelCont extends Component {
     return (
       showreelLoading ? <div  className=" AppLoading"><div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> :
 
-      <div>
-        <Showreel showreel={showreel}/>
+      <div style={{marginBottom: '50px'}}>
+        <Player video={showreel}/>
       </div>
     )
   }
