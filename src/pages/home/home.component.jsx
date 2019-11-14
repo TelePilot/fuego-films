@@ -24,7 +24,7 @@ const HomeCarousel = styled(Carousel)`
   .slide iframe {
     margin: 0 !important;
     width: 100% !important;
-    height: 100vh;
+    min-height: -webkit-fill-available;
   }
   .carousel-slider .control-arrow {
     padding: 20px !important;
