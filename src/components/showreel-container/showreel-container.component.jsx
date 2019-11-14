@@ -11,7 +11,8 @@ const ShowreelCont = () => {
       showreel.forEach(showreel => {
         setShowreel(showreel)
       }
-    )})},[]) 
+    )})
+  },[]) 
   
     return (
     

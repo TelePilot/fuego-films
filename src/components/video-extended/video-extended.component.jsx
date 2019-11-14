@@ -38,7 +38,7 @@ const VideoDesc = styled.p`
 
 
 const VideoExtended = ({video}) => {
-  console.log(video)
+
   return (
     video.length <= 0 || video === 'noVid' ? 
     <div>

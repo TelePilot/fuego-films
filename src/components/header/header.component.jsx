@@ -70,7 +70,6 @@ const HeaderComp = (props) => {
     })
     return
   }, [])
-  console.log(window.location.pathname)
   return (
 
     <HeaderContainer className={className} {...props}>
