@@ -32,7 +32,7 @@ const App = () => {
                     path={'/content'}
                     component={ContentPage}/>
                     <Switch>
-                    <Route exact path={`/content/:videoId`} children={VideoContainer}
+                    <Route path={`/content/:videoId`} children={VideoContainer}
                   />
                     </Switch>
                   
