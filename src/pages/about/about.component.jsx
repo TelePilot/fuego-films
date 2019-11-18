@@ -29,8 +29,8 @@ const AboutSection = styled.div`
 
 
 const AboutDescContainer = styled.div`
-  text-align: left;
-  width: 60%;
+  text-align: center;
+  width: 75%;
   @media screen and (max-width: 1000px) {
     text-align: center;
     width: 100%;
@@ -63,7 +63,7 @@ const AboutTeamContainer = styled.div`
 
   width: 100%;
   display: flex;
-  justify-content:flex-start;
+  justify-content:center;
   flex-flow: row wrap;
 
   * {
@@ -79,7 +79,7 @@ const AboutTeamContainer = styled.div`
   `
 
 const ShowreelContainer = styled.div`
-  width: 1000px;
+  width: 80%;
   overflow: hidden;
   margin-top: 5%;
   @media screen and (max-width: 1000px) {
@@ -118,7 +118,7 @@ const About = () => {
                   <h2 style={{margin: '0'}}>{about.descHeader}</h2>
                   <AboutDesc>{about.desc} </AboutDesc>
                   <AboutTeamContainer>
-                    <p>Founded by Charlie Rees, Edd Roberts and George Harper</p>
+                    <p >Founded by Charlie Rees, Edd Roberts and George Harper</p>
                   </AboutTeamContainer>
                   <DetailHeader>Get in touch with us:</DetailHeader>
                   <Details>{about.email}</Details>
