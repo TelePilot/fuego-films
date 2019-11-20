@@ -29,7 +29,10 @@ const AboutSection = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column
-  width: 100%;`
+  width: 100%;
+  @media screen and (max-width: 1000px) {
+    margin-top: 5px;
+  }`
 
 
 const AboutDescContainer = styled.div`
@@ -114,8 +117,8 @@ margin: 5px;
   justify-content: space-between;
   align-items: center;
   @media screen and (max-width: 1000px) {
-    width: 65%;
-    margin-left: 17.5%;
+    width: 8%;
+    margin-left: 10%;
     text-align: left;
   }`
 
