@@ -54,8 +54,8 @@ const AboutDescContainer = styled.div`
   }`
 const DetailHeader = styled.p`
   text-align: center;
-  font-size: 18px;
-  margin: 25px 0 5px 0
+  font-size: 22px;
+
   font-weight: bold;`
 const Details = styled.p`
   margin: 5px 0;
@@ -98,12 +98,17 @@ const ShowreelContainer = styled.div`
 
 const ContactDetails = styled.div`
     font-size: 22px;
-    
-   
+    border: 3px solid black;
+    margin: 25px 0 5px 0;
+     @media screen and (max-width: 1000px) {
+       margin-left: 10%;
+        width: 80%;
+      }
 `
 const Link = styled.a`
   text-decoration: none;
-    color: black;`
+    color: black;
+  `
 const VideoLinks = styled.img`
 width: 35px;
 margin: 5px;
@@ -112,14 +117,19 @@ margin: 5px;
 }
   `
   const LinkContainer = styled.div`
-  width: 100%;
+  width: 80%;
   display:flex;
+  padding: 5px 10%;
+  margin-bottom: 55px;
   justify-content: space-between;
   align-items: center;
+ 
   @media screen and (max-width: 1000px) {
-    width: 80%;
+    width: 70%;
+    padding: 5px 5%;
     margin-left: 10%;
     text-align: left;
+    margin-bottom: 35px;
   }`
 
 const About = () => {
@@ -169,12 +179,12 @@ const About = () => {
                         </Link>
                       </div>
                       <div>
-                        <a href="https://www.instagram.com/fuegofilmsldn/">
+                        <Link href="https://www.instagram.com/fuegofilmsldn/">
                         <VideoLinks alt="instagram Logo" src={urlFor(about.instagram).url()} />
-                        </a>
-                       <a href="https://vimeo.com/fuegofilmsltd">
+                        </Link>
+                       <Link href="https://vimeo.com/fuegofilmsltd">
                        <VideoLinks alt="vimeo Logo" src={urlFor(about.vimeo).url()} />
-                       </a>
+                       </Link>
                        
                       </div>
                      
