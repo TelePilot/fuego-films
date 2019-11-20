@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import sanityClient from '../../Client'
-import Particles from 'react-particles-js'
 import Footer from '../../components/footer/footer-component'
 import ShowreelCont from '../../components/showreel-container/showreel-container.component'
+import imageUrlBuilder from '@sanity/image-url'
 
+const builder = imageUrlBuilder(sanityClient)
+function urlFor(source) {
+  return builder.image(source)
+}
 const AboutWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -46,11 +50,14 @@ const AboutDescContainer = styled.div`
     }
   }`
 const DetailHeader = styled.p`
+  text-align: center;
   font-size: 18px;
-  margin: 25px 0 5px 0`
+  margin: 25px 0 5px 0
+  font-weight: bold;`
 const Details = styled.p`
   margin: 5px 0;
-
+  text-decoration: none;
+  color: black;
 `
 
 const AboutDesc = styled.p`
@@ -63,7 +70,7 @@ const AboutTeamContainer = styled.div`
 
   width: 100%;
   display: flex;
-  justify-content:flex-start;
+  justify-content:center;
   flex-flow: row wrap;
 
   * {
@@ -88,18 +95,42 @@ const ShowreelContainer = styled.div`
 
 const ContactDetails = styled.div`
     font-size: 22px;
+    
+   
 `
+const Link = styled.a`
+  text-decoration: none;
+    color: black;`
+const VideoLinks = styled.img`
+width: 35px;
+margin: 5px;
+@media screen and (max-width: 1000px) {
+  width: 25px;
+}
+  `
+  const LinkContainer = styled.div`
+  width: 100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (max-width: 1000px) {
+    width: 65%;
+    margin-left: 17.5%;
+    text-align: left;
+  }`
 
 const About = () => {
   const [about, setAbout] = useState({
     header: '',
     desc: '',
     descHeader: '',
-    teamMembers: []
+    teamMembers: [],
+    vimeo: '',
+    instagram: ''
   })
   useEffect(() => {
     const aboutQuery = `*[_type == "about"] {
-      header, desc, phone, email, descHeader, teamMembers[]->{name}
+      header, desc, phone, vimeo, instagram, email, descHeader, teamMembers[]->{name}
     }`
     sanityClient.fetch(aboutQuery).then(about => {
 
@@ -117,53 +148,6 @@ const About = () => {
         <div>
           <AboutHeader>{about.header}</AboutHeader>
             <AboutSection>
-            {/* <Particles className="particles"
-                params={{
-                  "particles": {
-                    "number":{
-                      "value":70,
-                      
-                    },
-                      "color":{
-                        "value":"#fd7907"
-                      },
-                      "opacity":{
-                        "value":0.8,
-                        "random":true,
-                        "anim":{
-                          "enable":false,
-                          "speed":1,
-                          "opacity_min":0.1,
-                          "sync":false
-                        }
-                      },
-                      "line_linked":{
-                        "enable":false,
-                        "distance":500,
-                        "color":"#ffffff",
-                        "opacity":0.4,
-                        "width":1
-                      },
-                      "polygon":{
-                        "nb_sides":3
-                      },
-                      "move":{
-                        "enable":true,
-                        "speed":6.8,
-                        "direction":"top",
-                        "random":true,
-                        "straight":false,
-                        "out_mode":"out",
-                        "bounce":false,
-                        "attract":{
-                          "enable":false,
-                          "rotateX":600,
-                          "rotateY":1200
-                        }
-                      }
-                    
-                  }
-              }} /> */}
                 <AboutDescContainer>
                   <h2 style={{margin: '0'}}>{about.descHeader}</h2>
                   <AboutDesc>{about.desc} </AboutDesc>
@@ -171,11 +155,27 @@ const About = () => {
                     <p >Founded by Charlie Rees, Edd Roberts and George Harper</p>
                   </AboutTeamContainer>
                   <ContactDetails>
-                    <div>
-                      <DetailHeader>Get in touch with us:</DetailHeader>
-                      <Details>{about.email}</Details>
-                      <Details>{about.phone}</Details>
-                    </div>
+                  <DetailHeader>Get in touch with us:</DetailHeader>
+                    <LinkContainer>
+                      <div>
+                        <Link href={`mailto:${about.email}`}>
+                        <Details>{about.email}</Details>
+                        </Link>
+                        <Link href={`tel:${about.phone}`}>
+                        <Details>{about.phone}</Details>
+                        </Link>
+                      </div>
+                      <div>
+                        <a href="https://www.instagram.com/fuegofilmsldn/">
+                        <VideoLinks alt="instagram Logo" src={urlFor(about.instagram).url()} />
+                        </a>
+                       <a href="https://vimeo.com/fuegofilmsltd">
+                       <VideoLinks alt="vimeo Logo" src={urlFor(about.vimeo).url()} />
+                       </a>
+                       
+                      </div>
+                     
+                    </LinkContainer>
                    
                   </ContactDetails>
                   
