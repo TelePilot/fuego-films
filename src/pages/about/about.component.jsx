@@ -31,7 +31,7 @@ const AboutSection = styled.div`
   flex-flow: column
   width: 100%;
   @media screen and (max-width: 1000px) {
-    margin-top: 5px;
+    margin-top: 25px;
   }`
 
 
@@ -117,7 +117,7 @@ margin: 5px;
   justify-content: space-between;
   align-items: center;
   @media screen and (max-width: 1000px) {
-    width: 8%;
+    width: 80%;
     margin-left: 10%;
     text-align: left;
   }`
