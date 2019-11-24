@@ -98,8 +98,6 @@ const ShowreelContainer = styled.div`
 
 const ContactDetails = styled.div`
     font-size: 22px;
-    border: 3px solid black;
-    margin: 25px 0 5px 0;
      @media screen and (max-width: 1000px) {
        margin-left: 10%;
         width: 80%;
