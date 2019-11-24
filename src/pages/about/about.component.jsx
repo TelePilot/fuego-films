@@ -115,20 +115,16 @@ margin: 5px;
 }
   `
   const LinkContainer = styled.div`
-  width: 80%;
+  width: 100%;
   display:flex;
-  padding: 5px 10%;
-  margin-bottom: 55px;
+
   justify-content: space-between;
   align-items: center;
  
   @media screen and (max-width: 1000px) {
-    width: 70%;
-    padding: 5px 5%;
-
+    width: 80%;
     margin-left: 10%;
     text-align: left;
-    margin-bottom: 35px;
   }`
 
 const About = () => {
