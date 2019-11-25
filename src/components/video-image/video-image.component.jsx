@@ -61,7 +61,10 @@ const VideoItemOverlay = styled.div`
     background: rgba(0,0,0,0.3);
 `
 const VideoTitle = styled.h1`
-
+    @media screen and (max-width: 1000px) {
+      font-size: 24px;
+    
+    } 
 `
 const ClientText = styled.p`
 `
