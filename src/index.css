@@ -1,17 +1,7 @@
-@font-face {
-  font-family: GTAmericaBlack;
-  src: url("./fonts/GT-America-Expanded-Black.otf") format("opentype");
-}
-
-@font-face {
-  font-family: GTAmericaLight;
-  src: url("./fonts/GT-America-Extended-Light.otf") format("opentype");
-}
-
 body {
   margin: 0;
   padding: 0;
-  font-family: 'GTAmericaLight', 'Source Sans Pro',
+  font-family: 'Source Sans Pro',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,6 +12,6 @@ code {
     monospace;
 }
 h1, h2 {
-  font-family: 'GTAmericaBlack', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
 }

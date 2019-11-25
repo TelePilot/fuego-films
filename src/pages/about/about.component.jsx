@@ -53,9 +53,11 @@ const AboutDescContainer = styled.div`
     }
   }`
 const DetailHeader = styled.p`
-  text-align: center;
+  text-align: left;
   font-size: 22px;
-
+  @media screen and (max-width: 1000px) {
+    text-align: center;
+   }
   font-weight: bold;`
 const Details = styled.p`
   margin: 5px 0;
@@ -73,7 +75,7 @@ const AboutTeamContainer = styled.div`
 
   width: 100%;
   display: flex;
-  justify-content:center;
+  justify-content:flex-start;
   flex-flow: row wrap;
 
   * {
@@ -109,7 +111,8 @@ const Link = styled.a`
   `
 const VideoLinks = styled.img`
 width: 35px;
-margin: 5px;
+margin-right: 10px;
+margin-top: 10px;
 @media screen and (max-width: 1000px) {
   width: 25px;
 }
@@ -118,10 +121,14 @@ margin: 5px;
   width: 100%;
   display:flex;
 
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: wrap column;
  
   @media screen and (max-width: 1000px) {
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-flow: row;
     width: 80%;
     margin-left: 10%;
     text-align: left;

@@ -4,7 +4,7 @@ import sanityClient from '../../Client'
 
 const FooterDesc = styled.p`
   position: relative;
-  bottom: 0;
+  bottom: 20px;
   font-size: 10px;
   width: 80%;
   margin-left: 10%;`
