@@ -26,6 +26,7 @@ margin: 80px 0 0 0;
 const AboutSection = styled.div`
   margin-top: 50px;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   flex-flow: column
@@ -53,7 +54,7 @@ const AboutDescContainer = styled.div`
     }
   }`
 const DetailHeader = styled.p`
-  text-align: left;
+  text-align: center;
   font-size: 22px;
   @media screen and (max-width: 1000px) {
     text-align: center;
@@ -75,7 +76,7 @@ const AboutTeamContainer = styled.div`
 
   width: 100%;
   display: flex;
-  justify-content:flex-start;
+  justify-content:center;
   flex-flow: row wrap;
 
   * {
@@ -111,8 +112,7 @@ const Link = styled.a`
   `
 const VideoLinks = styled.img`
 width: 35px;
-margin-right: 10px;
-margin-top: 10px;
+margin: 5px;
 @media screen and (max-width: 1000px) {
   width: 25px;
 }
@@ -121,18 +121,19 @@ margin-top: 10px;
   width: 100%;
   display:flex;
 
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-flow: wrap column;
+  justify-content: space-between;
+  align-items: center;
+  // flex-flow: wrap column;
  
   @media screen and (max-width: 1000px) {
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-flow: row;
     width: 80%;
     margin-left: 10%;
     text-align: left;
   }`
+
 
 const About = () => {
   const [about, setAbout] = useState({
@@ -162,6 +163,7 @@ const About = () => {
       <AboutWrapper>
         <div>
           <AboutHeader>{about.header}</AboutHeader>
+          
             <AboutSection>
                 <AboutDescContainer>
                   <h2 style={{margin: '0'}}>{about.descHeader}</h2>

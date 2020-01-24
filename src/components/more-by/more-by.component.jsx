@@ -27,7 +27,7 @@ const MoreBy = ({video}) => {
 
           : <BTSMoreVidCont>
             <BTS video={video} />
-            {video.categories ? <div>
+            {video.categories && video.categories.length > 0 ? <div>
               <MoreVids currentVideo={video} category={video.categories[0]._id}/> 
             </div> : null}
             
