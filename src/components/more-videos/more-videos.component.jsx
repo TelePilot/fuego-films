@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import sanityClient from '../../Client'
+import React, {useState, useEffect, useContext} from 'react'
 import styled from 'styled-components'
 import VideoImage from '../video-image/video-image.component'
 import { withRouter } from 'react-router-dom'
+import { ContentContext } from '../../store/ContentContext'
 
 const VideoContainer = styled.div`
   display: grid;
@@ -31,31 +31,50 @@ const MoreByP = styled.p`
  
 
 const MoreVids = ( {category, currentVideo} ) => {
-  
+    const {allArray} = useContext(ContentContext)
     const [moreVids, setMoreVids] = useState([])
     useEffect(() => {
-        if(category !== undefined) {
+        if(category !== undefined && !currentVideo.clientWork) {
+          
+          console.log(category)
             const categoryArray = []
-            const videoQuery = `*[_type == "video" && references('${category}')]{
-                title, thumbnail, client[]->{_id, clientName} }
-              `
-              sanityClient.fetch(videoQuery).then(video => {
-                video.forEach(video => {
-                  if(currentVideo.title !== video.title) {
-                    categoryArray.push(video)
+
+                allArray.forEach(video => {
+
+                  if(video.categories && video.categories.length > 0) {
+            
+                    if(currentVideo.title !== video.title && category === video.categories[0]._id) {
+                      categoryArray.push(video)
+                    }
+                    setMoreVids(categoryArray)
                   }
-                   
-                  
-                   
+                 
                   
                 })
-                setMoreVids(categoryArray)
-              })
-        } else {
-           return null
+          
+              
+        } else if (currentVideo.clientWork){
+          
+            const categoryArray = []
+
+                allArray.forEach(video => {
+
+                  if(video.client.length > 0 && video.client[0]._id === category) {
+                
+                    if(currentVideo.title !== video.title) {
+                      categoryArray.push(video)
+                    }
+                    setMoreVids(categoryArray)
+                  }
+                 
+                  
+                })
+        }
+         else {
+          return
         }
         return
-      }, [category, currentVideo]) 
+      }, [category, currentVideo, allArray]) 
      
     return (
         moreVids.length > 0 ? 
@@ -66,7 +85,7 @@ const MoreVids = ( {category, currentVideo} ) => {
           {
                 moreVids.map((contentVid, id) =>
                 <ImageContainer key={id}>
-                   <VideoImage video={contentVid} />
+                   <VideoImage more={true} video={contentVid} />
                 </ImageContainer>
                 )
               }

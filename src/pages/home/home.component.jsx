@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import sanityClient from '../../Client'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
 import VideoImage from '../../components/video-image/video-image.component'
+import { HomeContext } from '../../store/HomeContext'
 
 const HomeContainer = styled.div`
   position: relative;
@@ -33,21 +33,8 @@ const HomeCarousel = styled(Carousel)`
 
 
 const Home = () => {
-    const [home, setHome] = useState([])
-  useEffect(() => {
-    const homeQuery = `*[_type == "video" && homeVideo]{
-      clientWork, title, thumbnail, client[]->{clientName}}
-     `
-    sanityClient.fetch(homeQuery).then(home => {
-      const HomeArray = []
-      home.forEach(home => {
-        HomeArray.push(home)
-      })
-      setHome(HomeArray)
-    })
-    return
-  }, [])
-
+    
+  const { home } = useContext(HomeContext)
     const settings = {
       autoPlay: true,
       stopOnHover: false,
@@ -61,7 +48,7 @@ const Home = () => {
 
       <HomeContainer>
         {
-          home.length > 0 ? 
+          home ? 
           <HomeCarousel {...settings}>
           {
             home.map((homeVid, id) =>

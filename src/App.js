@@ -5,6 +5,8 @@ import Header from './components/header/header.component'
 import Spinner from './components/spinner/spinner.component'
 import VideoContainer from './components/video-extended-container/video-extended-container.component'
 import ErrorBoundary from './components/error-boundary/error-boundary.component'
+import ContentContextProvider from './store/ContentContext'
+import HomeContextProvider from './store/HomeContext'
 
 const HomePage = lazy(() => import('./pages/home/home.component'))
 const AboutPage = lazy(() => import('./pages/about/about.component'))
@@ -20,25 +22,29 @@ const App = () => {
             <Switch >
             <ErrorBoundary>
                 <Suspense fallback={<Spinner/>}>
-                
+                  <HomeContextProvider>
                   <Route
                     path={'/'}
                     component={HomePage}
                     exact/>
+                      <Route
+                    path={'/home'}
+                    component={HomePage}/>
+                    </HomeContextProvider>
                   <Route
                     path={'/about'}
                     component={AboutPage}/>
-                  <Route exact
-                    path={'/content'}
-                    component={ContentPage}/>
-                    <Switch>
-                    <Route path={`/content/:videoId`} children={VideoContainer}
-                  />
-                    </Switch>
+                    <ContentContextProvider>
+                        <Route exact
+                        path={'/content'}
+                        component={ContentPage}/>
+                        <Switch>
+                        <Route path={`/content/:videoId`} children={VideoContainer}
+                      />
+                        </Switch>
+                    </ContentContextProvider>
                   
-                  <Route
-                    path={'/home'}
-                    component={HomePage}/>
+                
                 </Suspense>  
                 </ErrorBoundary>
             </Switch>
