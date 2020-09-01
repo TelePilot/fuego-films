@@ -4,6 +4,13 @@ import './menu.styles.scss'
 import { useTrail, animated } from 'react-spring'
 import { push as Menu } from 'react-burger-menu'
 import { NavLink } from 'react-router-dom'
+import sanityClient from '../../Client'
+import imageUrlBuilder from '@sanity/image-url'
+
+const builder = imageUrlBuilder(sanityClient)
+function urlFor(source) {
+	return builder.image(source)
+}
 
 const AnimatedMenuItem = animated(NavLink)
 
@@ -11,84 +18,64 @@ const MenuItem = styled(AnimatedMenuItem)`
 	cursor: pointer;
 	text-decoration: none;
 	color: rgba(255, 255, 255, 0.7);
-	margin: 10px 0;
+	margin: 0 0 10px 0;
 	font-size: 32px;
+	position: relative;
+	z-index: 99;
 	transition: color ease-in-out 0.3s;
 	&:hover {
 		color: rgba(255, 255, 255, 1);
 	}
 `
-const Border = styled.div`
-	width: 100%;
-	height: 100%;
+
+const SocialContainer = styled.div`
 	position: absolute;
+	height: 100%;
+	width: 100%;
+	display: flex !important;
+	justify-content: center;
+	align-items: flex-end;
 	top: 0;
 	left: 0;
+`
+const SocialCont = styled.div`
+	display: flex;
+	height: 60px;
+	width: 60%;
+	margin-bottom: 10px;
 	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	transition: all 0.5s ease-in;
-	&:before {
-		position: absolute;
-		content: '';
-		height: 0;
-		width: 0;
-		border: 4px solid transparent;
-		bottom: 0;
-		left: 0;
-	}
-	&:after {
-		position: absolute;
-		content: '';
-		height: 0;
-		width: 0;
-		border: 4px solid transparent;
-		top: 0;
-		right: 0;
-	}
-	&:before {
-		border: 4px solid transparent;
-		border-right: none;
-		border-bottom: none;
+	justify-content: space-around;
+`
 
-		animation: before-animation 1s 0.4s forwards;
-	}
-	&:after {
-		border: 4px solid transparent;
-		border-left: none;
-		border-top: none;
-
-		animation: before-animation 1s 0.4s forwards;
-	}
-	@keyframes before-animation {
-		0% {
-			height: 0;
-			width: 0;
-			border-color: white;
-		}
-
-		55% {
-			height: 99.5%;
-			width: 0;
-		}
-		100% {
-			height: 99.5%;
-			width: 100%;
-			border-color: white;
-		}
+const SocialItem = styled.img`
+	width: 35px;
+	height: auto;
+	opacity: 0.7;
+	&:hover {
+		opacity: 1;
 	}
 `
-const HamburgerMenu = ({ menu }) => {
+
+const Border = styled.div``
+const HamburgerMenu = ({ menu, socials }) => {
 	const items = menu
 
 	const [trail, set] = useTrail(items.length, () => ({
 		opacity: 0,
 		transform: 'translate3D(0,50px,0)',
 	}))
+	console.log(socials)
 
 	const [menuOpen, menuOpenSwitch] = useState(false)
-
-	const toggleMenu = (state) => {
+	const reset = () => {
+		if (document.getElementById('border')) {
+			const border = document.getElementById('border')
+			border.classList.remove('border-animation')
+			void border.offsetWidth
+			console.log('reset')
+		}
+	}
+	const toggleMenu = state => {
 		if (state.isOpen) {
 			menuOpenSwitch(true)
 			set({
@@ -115,17 +102,36 @@ const HamburgerMenu = ({ menu }) => {
 			disableAutoFocus
 			left
 		>
-			{menuOpen ? <Border /> : null}
+			{menuOpen ? <Border className='border-animation' /> : null}
+
 			{trail.map((props, index) => (
 				<MenuItem
 					key={items[index]}
 					style={props}
 					onClick={() => menuOpenSwitch(false)}
-					to={items[index].name === 'home' ? '/' : `/${items[index].name}`}
+					to={
+						items[index].name === 'home' || items[index].name === 'Home'
+							? '/'
+							: `/${items[index].name.toLowerCase()}`
+					}
 				>
 					{items[index].name}
 				</MenuItem>
 			))}
+			<SocialContainer>
+				<SocialCont>
+					{socials
+						? socials.map((social, id) => (
+								<a target='_blank' href={social.link}>
+									<SocialItem
+										src={`${urlFor(social.icon)}`}
+										key={id}
+									></SocialItem>
+								</a>
+						  ))
+						: null}
+				</SocialCont>
+			</SocialContainer>
 		</Menu>
 	)
 }

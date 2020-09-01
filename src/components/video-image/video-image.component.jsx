@@ -86,7 +86,7 @@ const Logo = styled.img`
 	}
 `
 
-const VideoImage = ({ video, home, filtered, more }) => {
+const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 	return (
 		<VideoLink
 			onClick={() => window.scrollTo(0, 0)}
@@ -104,18 +104,22 @@ const VideoImage = ({ video, home, filtered, more }) => {
 										height: '100%',
 										backgroundImage: `url(${urlFor(video.thumbnail)
 											.quality(60)
+											.format('webp')
 											.url()})`,
 								  }
 								: {
 										height: '100vh',
 										backgroundImage: `url(${urlFor(video.thumbnail)
 											.quality(70)
+											.format('webp')
 											.url()})`,
 								  }
 						}
 					/>
 					<VideoTextContainer>
-						{video.clientWork && !filtered && !more ? null : (
+						{video.clientWork && clientCat ? null : video.clientWork &&
+						  !filtered &&
+						  !more ? null : (
 							<VideoTitle>{video.title}</VideoTitle>
 						)}
 
@@ -124,18 +128,36 @@ const VideoImage = ({ video, home, filtered, more }) => {
 									return !video.clientWork ? (
 										<ClientText key={id}>{client.clientName}</ClientText>
 									) : filtered || more ? (
-										<ClientText key={id}>{client.clientName}</ClientText>
+										clientCat ? null : (
+											<ClientText key={id}>{client.clientName}</ClientText>
+										)
 									) : null
 							  })
 							: null}
-
+						{video.clientWork && clientCat && filtered && !more
+							? video.client.map((client, id) =>
+									client.logo ? (
+										<LogoCont key={id}>
+											<Logo
+												alt={client.clientName}
+												src={urlFor(client.logo)
+													.format('webp')
+													.quality(60)
+													.url()}
+											/>
+										</LogoCont>
+									) : (
+										<VideoTitle key={id}>{client.clientName}</VideoTitle>
+									)
+							  )
+							: null}
 						{video.clientWork && !filtered && !more && !home ? (
 							video.client.map((client, id) =>
 								client.logo ? (
 									<LogoCont key={id}>
 										<Logo
 											alt={client.clientName}
-											src={urlFor(client.logo).url()}
+											src={urlFor(client.logo).format('webp').quality(60).url()}
 										/>
 									</LogoCont>
 								) : (
