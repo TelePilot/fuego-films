@@ -104,14 +104,14 @@ const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 										height: '100%',
 										backgroundImage: `url(${urlFor(video.thumbnail)
 											.quality(60)
-											.format('webp')
+											.auto('format')
 											.url()})`,
 								  }
 								: {
 										height: '100vh',
 										backgroundImage: `url(${urlFor(video.thumbnail)
 											.quality(70)
-											.format('webp')
+											.auto('format')
 											.url()})`,
 								  }
 						}
@@ -141,7 +141,7 @@ const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 											<Logo
 												alt={client.clientName}
 												src={urlFor(client.logo)
-													.format('webp')
+													.auto('format')
 													.quality(60)
 													.url()}
 											/>
@@ -157,7 +157,7 @@ const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 									<LogoCont key={id}>
 										<Logo
 											alt={client.clientName}
-											src={urlFor(client.logo).format('webp').quality(60).url()}
+											src={urlFor(client.logo).auto('format').quality(60).url()}
 										/>
 									</LogoCont>
 								) : (

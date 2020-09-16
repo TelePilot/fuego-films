@@ -64,19 +64,16 @@ const HamburgerMenu = ({ menu, socials }) => {
 		opacity: 0,
 		transform: 'translate3D(0,50px,0)',
 	}))
-	console.log(socials)
+
+	const [animate, setAnimate] = useState({
+		classNames: '',
+	})
 
 	const [menuOpen, menuOpenSwitch] = useState(false)
-	const reset = () => {
-		if (document.getElementById('border')) {
-			const border = document.getElementById('border')
-			border.classList.remove('border-animation')
-			void border.offsetWidth
-			console.log('reset')
-		}
-	}
+
 	const toggleMenu = state => {
 		if (state.isOpen) {
+			setAnimate({ classNames: 'border-animation' })
 			menuOpenSwitch(true)
 			set({
 				opacity: 1,
@@ -84,6 +81,7 @@ const HamburgerMenu = ({ menu, socials }) => {
 			})
 		} else {
 			menuOpenSwitch(false)
+			setAnimate({ classNames: '' })
 			set({
 				opacity: 0,
 				transform: 'translate3D(0,50px,0',
@@ -102,7 +100,8 @@ const HamburgerMenu = ({ menu, socials }) => {
 			disableAutoFocus
 			left
 		>
-			{menuOpen ? <Border className='border-animation' /> : null}
+			<Border className={`menu-border ${animate.classNames}`} />
+			{/* {menuOpen ? <Border className='border-animation' /> : null} */}
 
 			{trail.map((props, index) => (
 				<MenuItem
@@ -122,7 +121,7 @@ const HamburgerMenu = ({ menu, socials }) => {
 				<SocialCont>
 					{socials
 						? socials.map((social, id) => (
-								<a target='_blank' href={social.link}>
+								<a target='_blank' rel='noopener noreferrer' href={social.link}>
 									<SocialItem
 										src={`${urlFor(social.icon)}`}
 										key={id}

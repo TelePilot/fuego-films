@@ -13,6 +13,8 @@ function urlFor(source) {
 
 const HeaderContainer = styled.div`
 	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
 	z-index: 10;
 	top: 0;
 	left: 0;

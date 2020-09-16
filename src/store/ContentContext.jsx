@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react'
 import sanityClient from '../Client'
 export const ContentContext = createContext()
 
-const ContentContextProvider = (props) => {
+const ContentContextProvider = props => {
 	const [category, setCategory] = useState([])
 	const [videoArray, setVideoArray] = useState([])
 	const [ogArray, setOgArray] = useState([])
@@ -20,8 +20,8 @@ const ContentContextProvider = (props) => {
 	useEffect(() => {
 		const catArray = []
 
-		sanityClient.fetch(catQuery).then((cat) => {
-			cat.forEach((cat) => {
+		sanityClient.fetch(catQuery).then(cat => {
+			cat.forEach(cat => {
 				catArray.push(cat)
 			})
 			setCategory(catArray)
@@ -31,22 +31,22 @@ const ContentContextProvider = (props) => {
 
 	useEffect(() => {
 		console.log('fetching content')
-		sanityClient.fetch(videoQuery).then((video) => {
+		sanityClient.fetch(videoQuery).then(video => {
 			const videoArray = []
 			const allArray = []
 			const clientArray = []
-			video.forEach((video) => {
+			video.forEach(video => {
 				allArray.push(video)
 				if (videoArray.length <= 0) {
 					videoArray.push(video)
-					clientArray.push(video)
+					if (video.clientWork) {
+						clientArray.push(video)
+					}
 				} else if (video.clientWork && video.client !== undefined) {
-					if (
-						videoArray.filter((e) => e.clientWork && e.client !== undefined)
-					) {
+					if (videoArray.filter(e => e.clientWork && e.client !== undefined)) {
 						if (
 							videoArray.filter(
-								(e) => e.clientWork && e.client[0]._id === video.client[0]._id
+								e => e.clientWork && e.client[0]._id === video.client[0]._id
 							).length > 0
 						) {
 							//  videoArray.splice(videoArray.filter(e => e.client[0].clientName === video.client[0].clientName), 1, video)
@@ -82,9 +82,9 @@ const ContentContextProvider = (props) => {
 			setIsFiltered(true)
 			return
 		}
-		filteredVideos = allArray.filter((v) => {
+		filteredVideos = allArray.filter(v => {
 			if (v.categories !== undefined) {
-				return v.categories.every((c) => cat === c.category)
+				return v.categories.every(c => cat === c.category)
 			}
 			return null
 		})
