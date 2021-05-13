@@ -6,63 +6,72 @@ import About from '../about-video/about-video.component'
 import MoreBy from '../more-by/more-by.component'
 
 const VideoOuterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column wrap;
-  margin-bottom: 100px`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+	margin-bottom: 100px;
+`
 
 const VideoInnerWrapper = styled.div`
- display: flex;
- justify-content: center;
- align-items: center;
- flex-flow: column;
- margin-top: 80px;
- min-width: 80%;
- @media screen and (max-width: 1000px) {
-   min-width: 90%;
- }`
-
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
+	margin-top: 80px;
+	min-width: 80%;
+	@media screen and (max-width: 1000px) {
+		min-width: 90%;
+	}
+`
 
 const VideoTitle = styled.h2`
-  margin: 5px 0 0 0;
-  @media screen and (max-width: 1000px) {
-    font-size: 18px
-  }`
-
+	margin: 5px 0 0 0;
+	@media screen and (max-width: 1000px) {
+		font-size: 18px;
+	}
+`
 
 const VideoDesc = styled.p`
-  margin: 0 0 25px 0;
-  `  
+	margin: 0 0 25px 0;
+`
+const TeamCont = styled.div`
+	width: 100%
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+`
 
+const TeamText = styled.p``
 
-
-const VideoExtended = ({video}) => {
-
-  return (
-    video.length <= 0 || video === 'noVid' ? 
-    <div>
-      
-      <Spinner></Spinner>
-      {video === 'noVid' ? <VideoTitle>Video Not Found :(</VideoTitle> : null}
-     
-    </div> :
-      <VideoOuterWrapper>
-             <VideoInnerWrapper>
-             <VideoTitle>{video.title}</VideoTitle>
-                 {video.client ?
-                   video.client.map((client, id) => {
-                     return( <VideoDesc key={id}> {client.clientName} </VideoDesc>)
-                   }): null}
-             <Player video={video}/>
-            <MoreBy video={video}/>
-             {video.description ? 
-             <About video={video} />
-             : null}
-           </VideoInnerWrapper>
-       </VideoOuterWrapper>
-  )
+const VideoExtended = ({ video }) => {
+	return video.length <= 0 || video === 'noVid' ? (
+		<div>
+			<Spinner></Spinner>
+			{video === 'noVid' ? <VideoTitle>Video Not Found :(</VideoTitle> : null}
+		</div>
+	) : (
+		<VideoOuterWrapper>
+			<VideoInnerWrapper>
+				<VideoTitle>{video.title}</VideoTitle>
+				{video.client
+					? video.client.map((client, id) => {
+							return <VideoDesc key={id}> {client.clientName} </VideoDesc>
+					  })
+					: null}
+				<Player video={video} />
+				<TeamCont>
+					{video?.teamMembers?.length
+						? video.teamMembers.map((member, idx) => (
+								<TeamText key={idx}>{member.name}</TeamText>
+						  ))
+						: null}
+				</TeamCont>
+				<MoreBy video={video} />
+				{video.description ? <About video={video} /> : null}
+			</VideoInnerWrapper>
+		</VideoOuterWrapper>
+	)
 }
-
 
 export default VideoExtended

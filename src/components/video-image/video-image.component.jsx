@@ -87,6 +87,7 @@ const Logo = styled.img`
 `
 
 const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
+	console.log(video)
 	return (
 		<VideoLink
 			onClick={() => window.scrollTo(0, 0)}
@@ -136,7 +137,7 @@ const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 							: null}
 						{video.clientWork && clientCat && filtered && !more
 							? video.client.map((client, id) =>
-									client.logo ? (
+									client.logo.asset ? (
 										<LogoCont key={id}>
 											<Logo
 												alt={client.clientName}
@@ -153,7 +154,7 @@ const VideoImage = ({ video, home, filtered, more, category, clientCat }) => {
 							: null}
 						{video.clientWork && !filtered && !more && !home ? (
 							video.client.map((client, id) =>
-								client.logo ? (
+								client.logo.asset ? (
 									<LogoCont key={id}>
 										<Logo
 											alt={client.clientName}
